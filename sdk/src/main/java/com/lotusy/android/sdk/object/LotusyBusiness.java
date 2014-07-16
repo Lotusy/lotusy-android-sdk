@@ -6,16 +6,16 @@ package com.lotusy.android.sdk.object;
 public class LotusyBusiness {
     private int id;
     private int creatorId;
-    private double lat;
-    private double lng;
     private String name;
     private String price;
-    private LotusySchedule schedule;
-    private boolean cachOnly;
+    private boolean cashOnly;
     private boolean verified;
     private String phone;
     private String website;
     private String social;
+    private String imageUrl;
+    private LotusyLatLng latlng;
+    private LotusySchedule schedule;
     private LotusyAddress address;
     private LotusyRating rating;
 
@@ -27,22 +27,6 @@ public class LotusyBusiness {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLng() {
-        return lng;
-    }
-
-    public void setLng(double lng) {
-        this.lng = lng;
     }
 
     public String getName() {
@@ -61,12 +45,12 @@ public class LotusyBusiness {
         this.price = price;
     }
 
-    public boolean isCachOnly() {
-        return cachOnly;
+    public boolean isCashOnly() {
+        return cashOnly;
     }
 
-    public void setCachOnly(boolean cachOnly) {
-        this.cachOnly = cachOnly;
+    public void setCashOnly(boolean cashOnly) {
+        this.cashOnly = cashOnly;
     }
 
     public boolean isVerified() {
@@ -124,4 +108,20 @@ public class LotusyBusiness {
     public LotusyAddress getAddress() { return address; }
 
     public void setAddress(LotusyAddress address) { this.address = address; }
+
+    public LotusyLatLng getLatlng() {
+        return latlng;
+    }
+
+    public void setLatlng(LotusyLatLng latlng) {
+        this.latlng = latlng;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

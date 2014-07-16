@@ -1,30 +1,50 @@
 package com.lotusy.android.sdk;
 
 import com.lotusy.android.sdk.object.LotusyBusiness;
+import com.lotusy.android.sdk.object.LotusyLatLng;
 import com.lotusy.android.sdk.object.LotusyRating;
 
 /**
  * Created by pshen on 2014-07-14.
  */
-public class BusinessSDK {
+public class BusinessSDK extends LotusySDK {
 
-    public static int createBusiness(LotusyBusiness business) {
+    private static BusinessSDK defaultSDK=null;
+
+// ==========================================================================================================
+
+    public int createBusiness(LotusyBusiness business)  {
         return 0;
     }
 
-    public static LotusyBusiness getBusinessProfile(int businessId) {
+    public LotusyBusiness getBusinessProfile(int businessId)  {
         return null;
     }
 
-    public static LotusyBusiness[] getBusinessNearLocation(double lat, double lng, int radius, int start, int end) {
+    public LotusyBusiness[] getBusinessNearLocation( LotusyLatLng latlng,
+                                                     int radius,
+                                                     int start,
+                                                     int end)  {
         return null;
     }
 
-    public static boolean rateBusiness(int businessId) {
+    public boolean rateBusiness( int businessId,
+                                 LotusyRating rating) {
         return true;
     }
 
-    public static LotusyRating getUserRating(int userid, int businessId) {
+    public LotusyRating getUserRating(int businessId) {
         return null;
     }
+
+// ==========================================================================================================
+
+    public static BusinessSDK defaultSDK() {
+        if (defaultSDK==null) {
+            defaultSDK = new BusinessSDK();
+        }
+        return defaultSDK;
+    }
+
+    private BusinessSDK() {}
 }
