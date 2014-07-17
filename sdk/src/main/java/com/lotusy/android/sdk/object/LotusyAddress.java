@@ -4,6 +4,7 @@ package com.lotusy.android.sdk.object;
  * Created by pshen on 2014-07-15.
  */
 public class LotusyAddress {
+
     private String street;
     private String city;
     private String state;

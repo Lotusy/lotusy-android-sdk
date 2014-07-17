@@ -21,10 +21,10 @@ public class BusinessSDK extends LotusySDK {
         return null;
     }
 
-    public LotusyBusiness[] getBusinessNearLocation( LotusyLatLng latlng,
+    public LotusyBusiness[] getBusinessesNearLocation( LotusyLatLng latlng,
                                                      int radius,
                                                      int start,
-                                                     int end)  {
+                                                     int size)  {
         return null;
     }
 

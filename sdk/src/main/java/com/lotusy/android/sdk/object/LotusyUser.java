@@ -7,12 +7,6 @@ import java.util.Date;
  */
 public class LotusyUser {
 
-    private static LotusyUser current;
-
-    public static LotusyUser current() {
-        return LotusyUser.current;
-    }
-
     private int id;
     private String externalType;
     private String externalRef;

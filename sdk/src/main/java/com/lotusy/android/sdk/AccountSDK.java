@@ -7,6 +7,12 @@ import com.lotusy.android.sdk.object.LotusyUser;
 
 public class AccountSDK extends LotusySDK {
 
+    private static LotusyUser current;
+
+    public static LotusyUser currentUser() {
+        return current;
+    }
+
     private static AccountSDK defaultSDK=null;
 
     public static boolean register( String externalType,
@@ -16,12 +22,14 @@ public class AccountSDK extends LotusySDK {
                                     String picture,
                                     String description) throws LotusyUserAlreadyExistException {
         LotusySDK.token = new LotusyToken();
+        current = new LotusyUser();
         return true;
     }
 
     public static boolean login( String externalType,
                                  String externalRef) throws LotusyUserNotExistException {
         LotusySDK.token = new LotusyToken();
+        current = new LotusyUser();
         return true;
     }
 

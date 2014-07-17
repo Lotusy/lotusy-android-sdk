@@ -4,6 +4,7 @@ package com.lotusy.android.sdk.object;
  * Created by pshen on 2014-07-14.
  */
 public class LotusyBusiness {
+
     private int id;
     private int creatorId;
     private String name;
@@ -14,6 +15,7 @@ public class LotusyBusiness {
     private String website;
     private String social;
     private String imageUrl;
+    private int commentCount;
     private LotusyLatLng latlng;
     private LotusySchedule schedule;
     private LotusyAddress address;
@@ -123,5 +125,13 @@ public class LotusyBusiness {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 }
