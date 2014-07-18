@@ -1,9 +1,10 @@
 package com.lotusy.android.sdk;
 
-import com.lotusy.android.sdk.exception.LotusyUserAlreadyExistException;
-import com.lotusy.android.sdk.exception.LotusyUserNotExistException;
+import com.lotusy.android.sdk.callback.LotusySimpleCallback;
 import com.lotusy.android.sdk.object.LotusyToken;
 import com.lotusy.android.sdk.object.LotusyUser;
+import com.lotusy.android.sdk.callback.account.LotusyTokenCallback;
+import com.lotusy.android.sdk.callback.account.*;
 
 public class AccountSDK extends LotusySDK {
 
@@ -15,39 +16,43 @@ public class AccountSDK extends LotusySDK {
 
     private static AccountSDK defaultSDK=null;
 
-    public static boolean register( String externalType,
-                                    String externalRef,
-                                    String userName,
-                                    String nickName,
-                                    String picture,
-                                    String description) throws LotusyUserAlreadyExistException {
+    public static void register( String externalType,
+                                 String externalRef,
+                                 String userName,
+                                 String nickName,
+                                 String picture,
+                                 String description,
+                                 LotusyTokenCallback callback) {
+
         LotusySDK.token = new LotusyToken();
         current = new LotusyUser();
-        return true;
+
     }
 
-    public static boolean login( String externalType,
-                                 String externalRef) throws LotusyUserNotExistException {
+    public static void login( String externalType,
+                              String externalRef,
+                              LotusyTokenCallback callback) {
+
         LotusySDK.token = new LotusyToken();
         current = new LotusyUser();
-        return true;
     }
 
 // ==========================================================================================================
 
-    public LotusyUser getProfile() {
-        return null;
+    public void getProfile(LotusyUserCallback callback) {
+
     }
 
-    public LotusyUser getUserProfile(int userId) {
-        return null;
+    public void getUserProfile(int userId, LotusyUserCallback callback) {
+
     }
 
-    public boolean updateProfile( String userName,
-                                  String nickName,
-                                  String picture,
-                                  String description) {
-        return true;
+    public void updateProfile( String userName,
+                               String nickName,
+                               String picture,
+                               String description,
+                               LotusySimpleCallback callback) {
+
     }
 
 // ==========================================================================================================

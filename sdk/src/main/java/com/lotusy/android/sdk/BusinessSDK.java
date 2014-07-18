@@ -1,5 +1,7 @@
 package com.lotusy.android.sdk;
 
+import com.lotusy.android.sdk.callback.LotusySimpleCallback;
+import com.lotusy.android.sdk.callback.business.*;
 import com.lotusy.android.sdk.object.LotusyBusiness;
 import com.lotusy.android.sdk.object.LotusyLatLng;
 import com.lotusy.android.sdk.object.LotusyRating;
@@ -13,28 +15,30 @@ public class BusinessSDK extends LotusySDK {
 
 // ==========================================================================================================
 
-    public int createBusiness(LotusyBusiness business)  {
-        return 0;
+    public void createBusiness(LotusyBusiness business, LotusyBusinessCallback callback) {
+
     }
 
-    public LotusyBusiness getBusinessProfile(int businessId)  {
-        return null;
+    public void getBusinessProfile(int businessId, LotusyBusinessCallback callback) {
+
     }
 
-    public LotusyBusiness[] getBusinessesNearLocation( LotusyLatLng latlng,
-                                                     int radius,
-                                                     int start,
-                                                     int size)  {
-        return null;
+    public void getBusinessesNearLocation( LotusyLatLng latlng,
+                                           int radius,
+                                           int start,
+                                           int size,
+                                           LotusyBusinessListCallback callback ) {
+
     }
 
-    public boolean rateBusiness( int businessId,
-                                 LotusyRating rating) {
-        return true;
+    public void rateBusiness( int businessId,
+                              LotusyRating rating,
+                              LotusySimpleCallback callback ) {
+
     }
 
-    public LotusyRating getUserRating(int businessId) {
-        return null;
+    public void getUserRating(int businessId, LotusyRatingCallback callback) {
+
     }
 
 // ==========================================================================================================

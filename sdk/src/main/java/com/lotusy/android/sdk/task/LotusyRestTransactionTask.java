@@ -1,16 +1,20 @@
 package com.lotusy.android.sdk.task;
 
-import android.os.AsyncTask;
+public class LotusyRestTransactionTask implements Runnable {
 
+    private LotusyTaskParam param;
+    private LotusyCallback callback;
 
-public class LotusyRestTransactionTask extends AsyncTask<Object, Void, Object> {
-
-    @Override
-    protected Object doInBackground(Object... params) {
-
+    public LotusyRestTransactionTask(LotusyTaskParam param, LotusyCallback callback) {
+        this.param = param;
+        this.callback = callback;
     }
 
     @Override
-    protected void onPostExecute(Object result) {
+    public void run() {
+
+        Object response = null;
+
+        this.callback.doCallback(response);
     }
 }
