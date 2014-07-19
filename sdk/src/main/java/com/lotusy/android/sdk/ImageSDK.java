@@ -1,5 +1,8 @@
 package com.lotusy.android.sdk;
 
+import com.lotusy.android.sdk.callback.LotusySimpleCallback;
+import com.lotusy.android.sdk.callback.image.LotusyImageLinksCallback;
+
 import java.io.InputStream;
 
 /**
@@ -11,28 +14,32 @@ public class ImageSDK {
 
 // ==========================================================================================================
 
-    public String[] getCommentImages(int commentId) {
-        return null;
+    public void getCommentImages(int commentId, LotusyImageLinksCallback callback) {
+
     }
 
-    public String[] getBusinessCommentImages(int businessId) {
-        return null;
+    public void getBusinessCommentImages(int businessId, LotusyImageLinksCallback callback) {
+
     }
 
-    public String[] getUserCommentImages(int userId) {
-        return null;
+    public void getUserCommentImages(int userId, LotusyImageLinksCallback callback) {
+
     }
 
-    public boolean uploadCommentImage(int commentId, InputStream stream) {
-        return true;
+    public void uploadCommentImage( int commentId,
+                                    InputStream stream,
+                                    LotusySimpleCallback callback ) {
+
     }
 
-    public boolean uploadBusinessProfileImage(int businessId, InputStream stream) {
-        return true;
+    public void uploadBusinessProfileImage( int businessId,
+                                            InputStream stream,
+                                            LotusySimpleCallback callback ) {
+
     }
 
-    public boolean uploadUserProfileImage(InputStream stream) {
-        return true;
+    public void uploadUserProfileImage(InputStream stream, LotusySimpleCallback callback) {
+
     }
 
 // ==========================================================================================================

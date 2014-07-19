@@ -1,8 +1,12 @@
 package com.lotusy.android.sdk;
 
-import com.lotusy.android.sdk.object.LotusyComment;
+import com.lotusy.android.sdk.callback.LotusySimpleCallback;
+import com.lotusy.android.sdk.callback.comment.LotusyCommentCallback;
+import com.lotusy.android.sdk.callback.comment.LotusyCommentCreateCallback;
+import com.lotusy.android.sdk.callback.comment.LotusyCommentListCallback;
+import com.lotusy.android.sdk.callback.comment.LotusyReplyCallback;
+import com.lotusy.android.sdk.callback.comment.LotusyReplyListCallback;
 import com.lotusy.android.sdk.object.LotusyLatLng;
-import com.lotusy.android.sdk.object.LotusyReply;
 
 /**
  * Created by pshen on 2014-07-14.
@@ -13,44 +17,59 @@ public class CommentSDK {
 
 // ==========================================================================================================
 
-    public LotusyComment createComment(LotusyLatLng latlng, int business_id, String message) {
-        return null;
+    public void createComment( LotusyLatLng latlng,
+                               int business_id,
+                               String message,
+                               LotusyCommentCreateCallback callback ) {
+
     }
 
-    public LotusyComment getComment(int commentId) {
-        return null;
+    public void getComment(int commentId, LotusyCommentCallback callback) {
+
     }
 
-    public boolean deleteComment(int commentId) {
-        return true;
+    public void deleteComment(int commentId, LotusySimpleCallback callback) {
+
     }
 
-    public boolean likeComment(int commentId) {
-        return true;
+    public void likeComment(int commentId, LotusySimpleCallback callback) {
+
     }
 
-    public boolean dislikeComment(int commentId) {
-        return true;
+    public void dislikeComment(int commentId, LotusySimpleCallback callback) {
+
     }
 
-    public LotusyComment[] getCommentsNearLocation(LotusyLatLng latlng, int start, int size) {
-        return null;
+    public void getCommentsNearLocation( LotusyLatLng latlng,
+                                         int start,
+                                         int size,
+                                         LotusyCommentListCallback callback ) {
+
     }
 
-    public LotusyComment[] getUserComments(int userId, int start, int size) {
-        return null;
+    public void getUserComments( int userId,
+                                 int start,
+                                 int size,
+                                 LotusyCommentListCallback callback ) {
+
     }
 
-    public LotusyComment[] getBusinessComments(int businessId, int start, int size) {
-        return null;
+    public void getBusinessComments( int businessId,
+                                     int start,
+                                     int size,
+                                     LotusyCommentListCallback callback ) {
+
     }
 
-    public LotusyReply createReply(int commentId, String message) {
-        return null;
+    public void createReply(int commentId, String message, LotusyReplyCallback callback) {
+
     }
 
-    public LotusyReply[] getCommentReplies(int commentId, int start, int size) {
-        return null;
+    public void getCommentReplies( int commentId,
+                                   int start,
+                                   int size,
+                                   LotusyReplyListCallback calback ) {
+
     }
 
 // ==========================================================================================================

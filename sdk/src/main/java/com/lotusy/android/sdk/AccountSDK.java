@@ -1,20 +1,16 @@
 package com.lotusy.android.sdk;
 
 import com.lotusy.android.sdk.callback.LotusySimpleCallback;
-import com.lotusy.android.sdk.object.LotusyToken;
-import com.lotusy.android.sdk.object.LotusyUser;
 import com.lotusy.android.sdk.callback.account.LotusyTokenCallback;
-import com.lotusy.android.sdk.callback.account.*;
+import com.lotusy.android.sdk.callback.account.LotusyUserCallback;
+import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
+import com.lotusy.android.sdk.task.LotusyTaskParam;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AccountSDK extends LotusySDK {
 
-    private static LotusyUser current;
-
-    public static LotusyUser currentUser() {
-        return current;
-    }
-
-    private static AccountSDK defaultSDK=null;
 
     public static void register( String externalType,
                                  String externalRef,
@@ -24,28 +20,50 @@ public class AccountSDK extends LotusySDK {
                                  String description,
                                  LotusyTokenCallback callback) {
 
-        LotusySDK.token = new LotusyToken();
-        current = new LotusyUser();
+        JSONObject body = new JSONObject();
+        try {
+            body.put("id", externalType);
+            body.put("username", userName);
+            body.put("nickname", nickName);
+            body.put("profile_pic", picture);
+            body.put("description", description);
+        } catch (JSONException e) {}
 
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setPath("/register/"+externalType);
+        param.setMethod("POST");
+        param.setBody(body.toString());
+
+        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
+        task.run();
     }
+
 
     public static void login( String externalType,
                               String externalRef,
                               LotusyTokenCallback callback) {
 
-        LotusySDK.token = new LotusyToken();
-        current = new LotusyUser();
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setPath("/auth/"+externalType+"/"+externalRef);
+        param.setMethod("GET");
+
+        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
+        task.run();
     }
 
+
 // ==========================================================================================================
+
 
     public void getProfile(LotusyUserCallback callback) {
 
     }
 
+
     public void getUserProfile(int userId, LotusyUserCallback callback) {
 
     }
+
 
     public void updateProfile( String userName,
                                String nickName,
@@ -55,7 +73,12 @@ public class AccountSDK extends LotusySDK {
 
     }
 
+
 // ==========================================================================================================
+
+
+    private static AccountSDK defaultSDK=null;
+
 
     public static AccountSDK defaultSDK() {
         if (defaultSDK==null) {
@@ -63,6 +86,7 @@ public class AccountSDK extends LotusySDK {
         }
         return defaultSDK;
     }
+
 
     private AccountSDK() {}
 }
