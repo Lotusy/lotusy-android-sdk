@@ -1,4 +1,4 @@
-package com.lotusy.android.sdk.object;
+package com.lotusy.android.sdk.domain.comment;
 
 import java.util.Date;
 

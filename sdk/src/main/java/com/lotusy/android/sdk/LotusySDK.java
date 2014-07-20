@@ -1,6 +1,6 @@
 package com.lotusy.android.sdk;
 
-import com.lotusy.android.sdk.object.LotusyToken;
+import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.utility.LotusyProperties;
 
 import java.util.HashMap;
@@ -10,8 +10,6 @@ import java.util.Map;
  * Created by indochino on 2014-07-16.
  */
 abstract public class LotusySDK {
-
-    public static LotusyToken token;
 
     protected Map<String, LotusySDK> sdks;
 
@@ -32,8 +30,8 @@ abstract public class LotusySDK {
         headers.put("Content-Type", "application/json");
         headers.put("app-key", LotusyProperties.getAppKey());
 
-        if (LotusySDK.token!=null) {
-            headers.put("Authorization", "Bearer "+LotusySDK.token.getAccessToken());
+        if (LotusyToken.current()!=null) {
+            headers.put("Authorization", "Bearer "+LotusyToken.current().getAccessToken());
         }
 
         return headers;

@@ -1,6 +1,5 @@
-package com.lotusy.android.sdk.callback.comment;
+package com.lotusy.android.sdk.domain.comment;
 
-import com.lotusy.android.sdk.object.LotusyReply;
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 

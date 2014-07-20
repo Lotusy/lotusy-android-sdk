@@ -1,6 +1,5 @@
-package com.lotusy.android.sdk.callback.account;
+package com.lotusy.android.sdk.domain.account;
 
-import com.lotusy.android.sdk.object.LotusyUser;
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 

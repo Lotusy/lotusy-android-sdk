@@ -16,8 +16,16 @@ public class LotusyTaskResult {
         this.errors = new ArrayList<String>();
     }
 
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     public boolean isSuccess() {
         return this.success;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public int getStatusCode() {
@@ -28,7 +36,24 @@ public class LotusyTaskResult {
         return this.errors.size()>0;
     }
 
+    public void addError(String error) {
+        this.errors.add(error);
+    }
+
     public List<String> getErrors() {
         return this.errors;
+    }
+
+    private static LotusyTaskResult noAuthResult;
+
+    public static LotusyTaskResult getNoAuthResult() {
+        if (noAuthResult==null) {
+            noAuthResult = new LotusyTaskResult();
+            noAuthResult.setSuccess(false);
+            noAuthResult.setStatusCode(401);
+            noAuthResult.addError("unauthorized");
+        }
+
+        return noAuthResult;
     }
 }

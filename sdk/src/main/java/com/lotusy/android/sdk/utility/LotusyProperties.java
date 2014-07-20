@@ -25,7 +25,7 @@ public class LotusyProperties {
         return prop;
     }
 
-    public static String getHost() {
+    public static String getHost(String service) {
         return prop.getProperty("host");
     }
 

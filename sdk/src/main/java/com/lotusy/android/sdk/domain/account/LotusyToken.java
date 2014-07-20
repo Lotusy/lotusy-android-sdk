@@ -1,10 +1,17 @@
-package com.lotusy.android.sdk.object;
+package com.lotusy.android.sdk.domain.account;
 
 import java.util.Date;
 /**
  * Created by indochino on 2014-07-16.
  */
 public class LotusyToken {
+
+    protected static LotusyToken current;
+
+    public static LotusyToken current() {
+        return current;
+    }
+
     private int userId;
     private String accessToken;
     private String refreshToken;

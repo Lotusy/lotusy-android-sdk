@@ -1,7 +1,6 @@
 package com.lotusy.android.sdk.task;
 
 import com.lotusy.android.sdk.LotusySDK;
-import com.lotusy.android.sdk.utility.LotusyProperties;
 
 import java.io.InputStream;
 import java.util.Map;
@@ -11,7 +10,7 @@ import java.util.Map;
  */
 public class LotusyTaskParam {
 
-    private String path;
+    private String uri;
     private String method;
     private Map<String, String> headers;
     private String body;
@@ -22,11 +21,11 @@ public class LotusyTaskParam {
     }
 
     public String getUri() {
-        return LotusyProperties.getHost()+this.path;
+        return this.uri;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public String getMethod() {

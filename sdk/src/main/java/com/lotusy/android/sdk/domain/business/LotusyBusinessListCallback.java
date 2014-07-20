@@ -1,6 +1,5 @@
-package com.lotusy.android.sdk.callback.business;
+package com.lotusy.android.sdk.domain.business;
 
-import com.lotusy.android.sdk.object.LotusyBusiness;
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 

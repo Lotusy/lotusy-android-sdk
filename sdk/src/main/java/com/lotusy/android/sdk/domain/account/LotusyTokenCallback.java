@@ -1,7 +1,5 @@
-package com.lotusy.android.sdk.callback.account;
+package com.lotusy.android.sdk.domain.account;
 
-import com.lotusy.android.sdk.LotusySDK;
-import com.lotusy.android.sdk.object.LotusyToken;
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 
@@ -13,7 +11,7 @@ abstract public class LotusyTokenCallback extends LotusyCallback {
     @Override
     protected void doCallback(Object args) {
 
-        LotusySDK.token = new LotusyToken();
+        LotusyToken.current = new LotusyToken();
     }
 
     abstract public void callback(LotusyTaskResult result, LotusyToken token);

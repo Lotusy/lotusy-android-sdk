@@ -1,4 +1,8 @@
-package com.lotusy.android.sdk.object;
+package com.lotusy.android.sdk.domain.business;
+
+import com.lotusy.android.sdk.domain.LotusyAddress;
+import com.lotusy.android.sdk.domain.LotusyLatLng;
+import com.lotusy.android.sdk.domain.LotusySchedule;
 
 /**
  * Created by pshen on 2014-07-14.
@@ -7,7 +11,9 @@ public class LotusyBusiness {
 
     private int id;
     private int creatorId;
-    private String name;
+    private String zhName;
+    private String twName;
+    private String enName;
     private String price;
     private boolean cashOnly;
     private boolean verified;
@@ -31,12 +37,28 @@ public class LotusyBusiness {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getZhName() {
+        return zhName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setZhName(String name) {
+        this.zhName = name;
+    }
+
+    public String getTwName() {
+        return twName;
+    }
+
+    public void setTwName(String name) {
+        this.twName = name;
+    }
+
+    public String getEnName() {
+        return enName;
+    }
+
+    public void setEnName(String name) {
+        this.enName = name;
     }
 
     public String getPrice() {

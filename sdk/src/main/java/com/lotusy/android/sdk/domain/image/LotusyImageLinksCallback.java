@@ -1,4 +1,4 @@
-package com.lotusy.android.sdk.callback;
+package com.lotusy.android.sdk.domain.image;
 
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
@@ -6,12 +6,13 @@ import com.lotusy.android.sdk.task.LotusyTaskResult;
 /**
  * Created by pshen on 2014-07-17.
  */
-abstract public class LotusySimpleCallback extends LotusyCallback {
+abstract public class LotusyImageLinksCallback extends LotusyCallback {
 
     @Override
     protected void doCallback(Object args) {
 
     }
 
-    abstract public void callback(LotusyTaskResult result);
+    abstract public void callback(LotusyTaskResult result, String[] links);
 }
+

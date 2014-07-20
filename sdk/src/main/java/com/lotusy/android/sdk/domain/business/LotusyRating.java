@@ -1,4 +1,4 @@
-package com.lotusy.android.sdk.object;
+package com.lotusy.android.sdk.domain.business;
 
 import java.util.Date;
 

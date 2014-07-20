@@ -1,4 +1,4 @@
-package com.lotusy.android.sdk.object;
+package com.lotusy.android.sdk.domain.account;
 
 import java.util.Date;
 
@@ -6,6 +6,12 @@ import java.util.Date;
  * Created by pshen on 2014-07-14.
  */
 public class LotusyUser {
+
+    private static LotusyUser current;
+
+    public static LotusyUser current() {
+        return current;
+    }
 
     private int id;
     private String externalType;

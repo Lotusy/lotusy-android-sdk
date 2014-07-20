@@ -1,4 +1,4 @@
-package com.lotusy.android.sdk.object;
+package com.lotusy.android.sdk.domain;
 
 /**
  * Created by indochino on 2014-07-16.
