@@ -61,6 +61,7 @@ public class AccountSDK extends LotusySDK {
     public void getProfile(LotusyUserCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
@@ -75,6 +76,7 @@ public class AccountSDK extends LotusySDK {
     public void getUserProfile(int userId, LotusyUserCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
@@ -93,6 +95,7 @@ public class AccountSDK extends LotusySDK {
                                LotusySimpleCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult());
+            return;
         }
 
         if (userName==null && nickName==null && picture==null && description==null) {

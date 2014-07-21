@@ -27,6 +27,7 @@ public class BusinessSDK extends LotusySDK {
     public void createBusiness(LotusyBusiness business, LotusyBusinessCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
         }
 
         JSONObject body = this.populateBusiness(business);
@@ -44,6 +45,7 @@ public class BusinessSDK extends LotusySDK {
     public void getBusinessProfile(int businessId, LotusyBusinessCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
@@ -57,18 +59,21 @@ public class BusinessSDK extends LotusySDK {
 
     public void getBusinessesNearLocation( LotusyLatLng latlng,
                                            int radius,
+                                           boolean is_miles,
                                            int start,
                                            int size,
                                            LotusyBusinessListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/location?lat="+latlng.getLat()+
                                         "&lng="+latlng.getLng()+
                                         "&radius="+radius+
-                                        "&is_miles=false&start="+start+
+                                        "&is_miles="+(is_miles ? "true" : "false")+
+                                        "&start="+start+
                                         "&size="+size);
         param.setMethod("GET");
 
@@ -82,6 +87,7 @@ public class BusinessSDK extends LotusySDK {
                               LotusySimpleCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult());
+            return;
         }
 
         JSONObject body = this.populateRating(rating);
@@ -99,6 +105,7 @@ public class BusinessSDK extends LotusySDK {
     public void getUserRating(int businessId, LotusyRatingCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
         }
 
         int userId = LotusyToken.current().getUserId();
