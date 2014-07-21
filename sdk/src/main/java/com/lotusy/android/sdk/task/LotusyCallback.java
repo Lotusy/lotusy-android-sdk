@@ -1,7 +1,8 @@
 package com.lotusy.android.sdk.task;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Created by pshen on 2014-07-17.
@@ -11,33 +12,29 @@ abstract public class LotusyCallback {
     protected enum LotusyCallbackStatus { SUCCESS, ERROR, FAILURE }
 
     protected void parseResponse(String response) {
-        JSONObject jsonResponse = null;
-
+        JsonObject jsonResponse = null;
+        JsonParser parser = new JsonParser();
         try {
-            jsonResponse = new JSONObject(response);
-        } catch (JSONException e) {
-            JSONObject error = new JSONObject();
+            jsonResponse = (JsonObject) parser.parse(response);
+        } catch (JsonSyntaxException e) {
+            JsonObject error = new JsonObject();
 
-            try {
-                error.put("status", "failure");
-                error.put("description", "cannot_parse_response");
-                error.put("response", response);
+            error.addProperty("status", "failure");
+            error.addProperty("description", "cannot_parse_response");
+            error.addProperty("response", response);
 
-                this.doCallback(LotusyCallbackStatus.FAILURE, error);
-                return;
-            } catch (JSONException e1) {}
+            this.doCallback(LotusyCallbackStatus.FAILURE, error);
+            return;
         }
 
         LotusyCallbackStatus status = LotusyCallbackStatus.ERROR;
 
-        try {
-            if (jsonResponse.get("status")=="success") {
-                status = LotusyCallbackStatus.SUCCESS;
-            }
-        } catch (JSONException e) {}
+        if (jsonResponse.get("status").getAsString().equals("success")) {
+            status = LotusyCallbackStatus.SUCCESS;
+        }
 
         this.doCallback(status, jsonResponse);
     }
 
-    abstract protected void doCallback(LotusyCallbackStatus status, JSONObject response);
+    abstract protected void doCallback(LotusyCallbackStatus status, JsonObject response);
 }

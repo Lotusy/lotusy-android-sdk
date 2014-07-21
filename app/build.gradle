@@ -4,7 +4,7 @@ android {
     compileSdkVersion 'android-L'
     buildToolsVersion '20.0.0'
     defaultConfig {
-        applicationId 'com.example.pshen.myapplication'
+        applicationId 'com.lotusy.android.sdk.test'
         minSdkVersion 15
         targetSdkVersion 'L'
         versionCode 1

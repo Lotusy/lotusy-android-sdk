@@ -1,5 +1,6 @@
 package com.lotusy.android.sdk;
 
+import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusyAddress;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.LotusySchedule;
@@ -15,9 +16,6 @@ import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 import com.lotusy.android.sdk.utility.LotusyProperties;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * Created by pshen on 2014-07-14.
  */
@@ -30,7 +28,7 @@ public class BusinessSDK extends LotusySDK {
             return;
         }
 
-        JSONObject body = this.populateBusiness(business);
+        JsonObject body = this.populateBusiness(business);
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/business");
@@ -90,7 +88,7 @@ public class BusinessSDK extends LotusySDK {
             return;
         }
 
-        JSONObject body = this.populateRating(rating);
+        JsonObject body = this.populateRating(rating);
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/"+businessId+"/business");
@@ -123,60 +121,59 @@ public class BusinessSDK extends LotusySDK {
 // ==========================================================================================================
 
 
-    private JSONObject populateBusiness(LotusyBusiness business) {
+    private JsonObject populateBusiness(LotusyBusiness business) {
 
-        JSONObject body = new JSONObject();
-        try {
-            LotusyLatLng latlng = business.getLatlng();
-            if (latlng!=null) {
-                body.put("lat", latlng.getLat());
-                body.put("lng", latlng.getLng());
-            }
+        JsonObject body = new JsonObject();
 
-            if (business.getZhName()!=null) { body.put("zh_name", business.getZhName()); }
-            if (business.getTwName()!=null) { body.put("tw_name", business.getTwName()); }
-            if (business.getEnName()!=null) { body.put("en_name", business.getEnName()); }
+        LotusyLatLng latlng = business.getLatlng();
+        if (latlng!=null) {
+            body.addProperty("lat", latlng.getLat());
+            body.addProperty("lng", latlng.getLng());
+        }
 
-            LotusyAddress address = business.getAddress();
-            if (address!=null) {
-                body.put("street", address.getStreet());
-                body.put("city", address.getCity());
-                body.put("state", address.getState());
-                body.put("country", address.getCountry());
-                if (address.getZip()!=null) { body.put("zip", address.getZip()); }
-            }
+        if (business.getZhName()!=null) { body.addProperty("zh_name", business.getZhName()); }
+        if (business.getTwName()!=null) { body.addProperty("tw_name", business.getTwName()); }
+        if (business.getEnName()!=null) { body.addProperty("en_name", business.getEnName()); }
 
-            LotusySchedule schedule = business.getSchedule();
-            if (schedule!=null) {
-                JSONObject hours = new JSONObject();
-                if (schedule.getMonday()!=null) { hours.put("mon", schedule.getMonday()); }
-                if (schedule.getTuesday()!=null) { hours.put("tue", schedule.getTuesday()); }
-                if (schedule.getWednesday()!=null) { hours.put("wed", schedule.getWednesday()); }
-                if (schedule.getThursday()!=null) { hours.put("thu", schedule.getThursday()); }
-                if (schedule.getFriday()!=null) { hours.put("fri", schedule.getFriday()); }
-                if (schedule.getSaturday()!=null) { hours.put("sat", schedule.getSaturday()); }
-                if (schedule.getSunday()!=null) { hours.put("sun", schedule.getSunday()); }
-            }
+        LotusyAddress address = business.getAddress();
+        if (address!=null) {
+            body.addProperty("street", address.getStreet());
+            body.addProperty("city", address.getCity());
+            body.addProperty("state", address.getState());
+            body.addProperty("country", address.getCountry());
+            if (address.getZip()!=null) { body.addProperty("zip", address.getZip()); }
+        }
 
-            body.put("cach_only", business.isCashOnly() ? "Y" : "N");
-            if (business.getPhone()!=null) { body.put("tel", business.getPhone()); }
-            if (business.getWebsite()!=null) { body.put("website", business.getWebsite()); }
-            if (business.getSocial()!=null) { body.put("social", business.getSocial()); }
-        } catch (JSONException e) {}
+        LotusySchedule schedule = business.getSchedule();
+        if (schedule!=null) {
+            JsonObject hours = new JsonObject();
+            if (schedule.getMonday()!=null) { hours.addProperty("mon", schedule.getMonday()); }
+            if (schedule.getTuesday()!=null) { hours.addProperty("tue", schedule.getTuesday()); }
+            if (schedule.getWednesday()!=null) { hours.addProperty("wed", schedule.getWednesday()); }
+            if (schedule.getThursday()!=null) { hours.addProperty("thu", schedule.getThursday()); }
+            if (schedule.getFriday()!=null) { hours.addProperty("fri", schedule.getFriday()); }
+            if (schedule.getSaturday()!=null) { hours.addProperty("sat", schedule.getSaturday()); }
+            if (schedule.getSunday()!=null) { hours.addProperty("sun", schedule.getSunday()); }
+        }
+
+        body.addProperty("cach_only", business.isCashOnly() ? "Y" : "N");
+        if (business.getPhone()!=null) { body.addProperty("tel", business.getPhone()); }
+        if (business.getWebsite()!=null) { body.addProperty("website", business.getWebsite()); }
+        if (business.getSocial()!=null) { body.addProperty("social", business.getSocial()); }
+
 
         return body;
     }
 
 
-    private JSONObject populateRating(LotusyRating rating) {
+    private JsonObject populateRating(LotusyRating rating) {
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("overall", rating.getOverall());
-            body.put("env", rating.getEnvironment());
-            body.put("food", rating.getFood());
-            body.put("serv", rating.getService());
-        } catch (JSONException e) {}
+        JsonObject body = new JsonObject();
+        body.addProperty("overall", rating.getOverall());
+        body.addProperty("env", rating.getEnvironment());
+        body.addProperty("food", rating.getFood());
+        body.addProperty("serv", rating.getService());
+
 
         return body;
     }

@@ -1,5 +1,6 @@
 package com.lotusy.android.sdk;
 
+import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
@@ -9,8 +10,6 @@ import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 import com.lotusy.android.sdk.utility.LotusyProperties;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class AccountSDK extends LotusySDK {
 
@@ -23,14 +22,12 @@ public class AccountSDK extends LotusySDK {
                                  String description,
                                  LotusyTokenCallback callback) {
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("id", externalType);
-            body.put("username", userName);
-            body.put("nickname", nickName);
-            body.put("profile_pic", picture);
-            body.put("description", description);
-        } catch (JSONException e) {}
+        JsonObject body = new JsonObject();
+        body.addProperty("id", externalType);
+        body.addProperty("username", userName);
+        body.addProperty("nickname", nickName);
+        body.addProperty("profile_pic", picture);
+        body.addProperty("description", description);
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/register/" + externalType);
@@ -104,13 +101,11 @@ public class AccountSDK extends LotusySDK {
             callback.callback(result);
         }
 
-        JSONObject body = new JSONObject();
-        try {
-            if (userName!=null) { body.put("username", userName); }
-            if (nickName!=null) { body.put("nickname", nickName); }
-            if (picture!=null) { body.put("profile_pic", picture); }
-            if (description!=null) { body.put("description", description); }
-        } catch (JSONException e) {}
+        JsonObject body = new JsonObject();
+        if (userName!=null) { body.addProperty("username", userName); }
+        if (nickName!=null) { body.addProperty("nickname", nickName); }
+        if (picture!=null) { body.addProperty("profile_pic", picture); }
+        if (description!=null) { body.addProperty("description", description); }
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/profile");

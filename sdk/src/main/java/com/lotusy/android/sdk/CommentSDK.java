@@ -1,5 +1,6 @@
 package com.lotusy.android.sdk;
 
+import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
@@ -13,9 +14,6 @@ import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
 import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 import com.lotusy.android.sdk.utility.LotusyProperties;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by pshen on 2014-07-14.
@@ -32,16 +30,15 @@ public class CommentSDK {
             return;
         }
 
-        JSONObject body = new JSONObject();
-        try {
-            if (latlng!=null) {
-                body.put("lat", latlng.getLat());
-                body.put("lng", latlng.getLng());
-            }
+        JsonObject body = new JsonObject();
+        if (latlng!=null) {
+            body.addProperty("lat", latlng.getLat());
+            body.addProperty("lng", latlng.getLng());
+        }
 
-            body.put("business_id", business_id);
-            body.put("message", message);
-        } catch (JSONException e) {}
+        body.addProperty("business_id", business_id);
+        body.addProperty("message", message);
+
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/comment");
@@ -190,12 +187,10 @@ public class CommentSDK {
             return;
         }
 
-        JSONObject body = new JSONObject();
-        try {
-            body.put("comment_id", commentId);
-            body.put("message", message);
-            body.put("nickname", LotusyUser.current().getNickName());
-        } catch (JSONException e) {}
+        JsonObject body = new JsonObject();
+        body.addProperty("comment_id", commentId);
+        body.addProperty("message", message);
+        body.addProperty("nickname", LotusyUser.current().getNickName());
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/"+commentId+"/replay");

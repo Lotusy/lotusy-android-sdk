@@ -1,5 +1,7 @@
 package com.lotusy.android.sdk.task;
 
+import com.google.gson.JsonObject;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -13,8 +15,6 @@ import org.apache.http.entity.AbstractHttpEntity;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -53,7 +53,6 @@ public class LotusyRestTransactionTask implements Runnable {
 
                 this.callback.parseResponse(response);
             }
-        } catch (JSONException e) {
         } catch (FileNotFoundException e) {
         } catch (UnsupportedEncodingException e) {
         } catch (ClientProtocolException e) {
@@ -62,7 +61,7 @@ public class LotusyRestTransactionTask implements Runnable {
 
 
     private HttpRequestBase prepareRequest()
-            throws JSONException, FileNotFoundException, UnsupportedEncodingException {
+            throws FileNotFoundException, UnsupportedEncodingException {
 
         String url = this.param.getUri();
 
@@ -98,7 +97,7 @@ public class LotusyRestTransactionTask implements Runnable {
     }
 
     private AbstractHttpEntity getReuqestEntity()
-            throws JSONException, FileNotFoundException, UnsupportedEncodingException {
+            throws FileNotFoundException, UnsupportedEncodingException {
         AbstractHttpEntity entity = null;
         Object requestBody = null;
 
@@ -126,7 +125,7 @@ public class LotusyRestTransactionTask implements Runnable {
         }
     }
 
-    private String prepareStringRequestBody() throws JSONException {
+    private String prepareStringRequestBody() {
         String[] keys = {	"bid",
                 "lat",
                 "lng",
@@ -134,12 +133,12 @@ public class LotusyRestTransactionTask implements Runnable {
                 "msg"
         };
 
-        JSONObject body = new JSONObject();
+        JsonObject body = new JsonObject();
         Map<String, String> params = null;
 
         for (String key : keys) {
             String value = params.get(key);
-            body.put(key, (value!=null ? value : ""));
+            body.addProperty(key, (value!=null ? value : ""));
         }
 
         return body.toString();
