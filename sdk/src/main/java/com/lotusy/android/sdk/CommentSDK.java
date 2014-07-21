@@ -48,8 +48,8 @@ public class CommentSDK {
         param.setBody(body.toString());
         param.setMethod("POST");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -63,8 +63,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/comment/"+commentId);
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -78,8 +78,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/comment/"+commentId);
         param.setBody("DELETE");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -93,8 +93,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/comment/"+commentId+"/like");
         param.setBody("PUT");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -108,8 +108,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/comment/"+commentId+"/dislike");
         param.setBody("PUT");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -143,8 +143,8 @@ public class CommentSDK {
                                         "&size="+size);
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -161,8 +161,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/user/"+userId+"/comments?&start="+start+"&size="+size);
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -179,8 +179,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/business/"+businessId+"/comments?start="+start+"&size="+size);
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -201,8 +201,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/"+commentId+"/replay");
         param.setBody("POST");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -219,8 +219,8 @@ public class CommentSDK {
         param.setUri(getHost()+"/"+commentId+"/replies?start="+start+"&size="+size);
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 

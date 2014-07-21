@@ -37,8 +37,8 @@ public class BusinessSDK extends LotusySDK {
         param.setMethod("POST");
         param.setBody(body.toString());
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -52,8 +52,8 @@ public class BusinessSDK extends LotusySDK {
         param.setUri(getHost()+"/"+businessId+"/profile");
         param.setMethod("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -77,8 +77,8 @@ public class BusinessSDK extends LotusySDK {
                                         "&size="+size);
         param.setMethod("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -97,8 +97,8 @@ public class BusinessSDK extends LotusySDK {
         param.setMethod("POST");
         param.setBody(body.toString());
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -114,8 +114,8 @@ public class BusinessSDK extends LotusySDK {
         param.setUri(getHost()+"/business/"+businessId+"/user/"+userId+"/rating");
         param.setMethod("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
 
     }
 

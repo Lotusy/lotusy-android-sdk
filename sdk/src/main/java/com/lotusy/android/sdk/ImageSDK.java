@@ -26,8 +26,8 @@ public class ImageSDK {
         param.setUri(getHost()+"/comment/"+commentId+"/links");
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -41,8 +41,8 @@ public class ImageSDK {
         param.setUri(getHost()+"/business/"+businessId+"/links");
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -56,8 +56,8 @@ public class ImageSDK {
         param.setUri(getHost()+"/user/"+userId+"/comment/links");
         param.setBody("GET");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -74,8 +74,8 @@ public class ImageSDK {
         param.setFile(stream);
         param.setMethod("POST");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -92,8 +92,8 @@ public class ImageSDK {
         param.setFile(stream);
         param.setMethod("POST");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
@@ -108,8 +108,8 @@ public class ImageSDK {
         param.setFile(stream);
         param.setMethod("POST");
 
-        LotusyRestTransactionTask task = new LotusyRestTransactionTask(param, callback);
-        task.run();
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 

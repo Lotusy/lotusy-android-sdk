@@ -3,13 +3,15 @@ package com.lotusy.android.sdk.domain.account;
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 
+import org.json.JSONObject;
+
 /**
  * Created by pshen on 2014-07-17.
  */
 abstract public class LotusyTokenCallback extends LotusyCallback {
 
     @Override
-    protected void doCallback(Object args) {
+    protected void doCallback(LotusyCallbackStatus status, JSONObject response) {
 
         LotusyToken.current = new LotusyToken();
     }
