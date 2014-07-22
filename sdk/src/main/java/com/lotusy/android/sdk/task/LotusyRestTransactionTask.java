@@ -1,7 +1,5 @@
 package com.lotusy.android.sdk.task;
 
-import com.google.gson.JsonObject;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -99,9 +97,8 @@ public class LotusyRestTransactionTask implements Runnable {
     private AbstractHttpEntity getReuqestEntity()
             throws FileNotFoundException, UnsupportedEncodingException {
         AbstractHttpEntity entity = null;
-        Object requestBody = null;
+        Object requestBody = this.param.getBody();
 
-        requestBody = this.prepareStringRequestBody();
         if( requestBody != null ) {
             entity = new StringEntity( (String)requestBody );
             entity.setContentType("application/json");
@@ -125,24 +122,6 @@ public class LotusyRestTransactionTask implements Runnable {
         }
     }
 
-    private String prepareStringRequestBody() {
-        String[] keys = {	"bid",
-                "lat",
-                "lng",
-                "img",
-                "msg"
-        };
-
-        JsonObject body = new JsonObject();
-        Map<String, String> params = null;
-
-        for (String key : keys) {
-            String value = params.get(key);
-            body.addProperty(key, (value!=null ? value : ""));
-        }
-
-        return body.toString();
-    }
 
     protected FileInputStream prepareFileRequestBody() throws FileNotFoundException {
         FileInputStream atReturn = null;

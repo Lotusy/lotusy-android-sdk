@@ -8,7 +8,6 @@ import com.lotusy.android.sdk.domain.account.LotusyUserCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
 import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
-import com.lotusy.android.sdk.utility.LotusyProperties;
 
 
 public class AccountSDK extends LotusySDK {
@@ -52,10 +51,7 @@ public class AccountSDK extends LotusySDK {
     }
 
 
-// ==========================================================================================================
-
-
-    public void getProfile(LotusyUserCallback callback) {
+    public static void getProfile(LotusyUserCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -70,7 +66,7 @@ public class AccountSDK extends LotusySDK {
     }
 
 
-    public void getUserProfile(int userId, LotusyUserCallback callback) {
+    public static void getUserProfile(int userId, LotusyUserCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -85,11 +81,11 @@ public class AccountSDK extends LotusySDK {
     }
 
 
-    public void updateProfile( String userName,
-                               String nickName,
-                               String picture,
-                               String description,
-                               LotusySimpleCallback callback) {
+    public static void updateProfile( String userName,
+                                      String nickName,
+                                      String picture,
+                                      String description,
+                                      LotusySimpleCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult());
             return;
@@ -120,18 +116,28 @@ public class AccountSDK extends LotusySDK {
 // ==========================================================================================================
 
 
-    private static AccountSDK defaultSDK=null;
-
-    public static AccountSDK defaultSDK() {
-        if (defaultSDK==null) {
-            defaultSDK = new AccountSDK();
-        }
-        return defaultSDK;
-    }
-
     private static String getHost() {
-        return LotusyProperties.getHost("user");
-    }
 
-    private AccountSDK() {}
+        String host = "";
+
+        switch (env()) {
+            case DEV:
+                host = "http://local.account.lotusy.com/rest";
+                break;
+            case TEST:
+                host = "http://test.account.lotusy.com/rest";
+                break;
+            case INT:
+                host = "http://int.account.lotusy.com/rest";
+                break;
+            case STAG:
+                host = "http://staging.account.lotusy.com/rest";
+                break;
+            case PROD:
+                host = "http://account.lotusy.com/rest";
+                break;
+        }
+
+        return host;
+    }
 }

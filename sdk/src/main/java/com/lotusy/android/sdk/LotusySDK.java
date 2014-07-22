@@ -1,7 +1,6 @@
 package com.lotusy.android.sdk;
 
 import com.lotusy.android.sdk.domain.account.LotusyToken;
-import com.lotusy.android.sdk.utility.LotusyProperties;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,29 +10,29 @@ import java.util.Map;
  */
 abstract public class LotusySDK {
 
-    protected Map<String, LotusySDK> sdks;
-
-    protected LotusySDK() {
-        sdks = new HashMap<String, LotusySDK>();
-    }
-
-    public void registerSDK(String key, LotusySDK sdk) {
-        sdks.put(key, sdk);
-    }
-
-    protected LotusySDK lookupSDK(String key) {
-        return sdks.get(key);
-    }
+    public enum ENVIRONMENT { DEV, TEST, INT, STAG, PROD }
 
     public static Map<String, String> getDefaultHeaders() {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json");
-        headers.put("app-key", LotusyProperties.getAppKey());
+        headers.put("app-key", appKey);
 
         if (LotusyToken.current()!=null) {
             headers.put("Authorization", "Bearer "+LotusyToken.current().getAccessToken());
         }
 
         return headers;
+    }
+
+    private static String appKey;
+    private static ENVIRONMENT env;
+
+    public static void setup(String applicationKey, ENVIRONMENT environment) {
+        appKey = applicationKey;
+        env = environment;
+    }
+
+    protected static ENVIRONMENT env() {
+        return env;
     }
 }

@@ -1,7 +1,6 @@
 package com.lotusy.android.sdk.test;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
+import com.lotusy.android.sdk.AccountSDK;
+import com.lotusy.android.sdk.LotusySDK;
+import com.lotusy.android.sdk.domain.account.LotusyToken;
+import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
+import com.lotusy.android.sdk.task.LotusyTaskResult;
 
 
 public class MainActivity extends Activity {
@@ -18,6 +21,19 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LotusySDK.setup("9D0E7CE8711F6F1CF87704557828A16E", LotusySDK.ENVIRONMENT.DEV);
+
+        AccountSDK.register(
+            "facebook", "1234567890", "pshen", "ppp", "", "Great guy", new LotusyTokenCallback() {
+                @Override
+                public void callback(LotusyTaskResult result, LotusyToken token) {
+                    if (result.isSuccess()) {
+                        LotusyToken.current();
+                    }
+                }
+            }
+        );
+
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()

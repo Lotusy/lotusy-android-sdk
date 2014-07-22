@@ -13,18 +13,17 @@ import com.lotusy.android.sdk.domain.comment.LotusyReplyListCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
 import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
-import com.lotusy.android.sdk.utility.LotusyProperties;
 
 /**
  * Created by pshen on 2014-07-14.
  */
-public class CommentSDK {
+public class CommentSDK extends LotusySDK {
 
 
-    public void createComment( LotusyLatLng latlng,
-                               int business_id,
-                               String message,
-                               LotusyCommentCreateCallback callback ) {
+    public static void createComment( LotusyLatLng latlng,
+                                      int business_id,
+                                      String message,
+                                      LotusyCommentCreateCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -50,7 +49,7 @@ public class CommentSDK {
     }
 
 
-    public void getComment(int commentId, LotusyCommentCallback callback) {
+    public static void getComment(int commentId, LotusyCommentCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -65,7 +64,7 @@ public class CommentSDK {
     }
 
 
-    public void deleteComment(int commentId, LotusySimpleCallback callback) {
+    public static void deleteComment(int commentId, LotusySimpleCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult());
             return;
@@ -80,7 +79,7 @@ public class CommentSDK {
     }
 
 
-    public void likeComment(int commentId, LotusySimpleCallback callback) {
+    public static void likeComment(int commentId, LotusySimpleCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult());
             return;
@@ -95,7 +94,7 @@ public class CommentSDK {
     }
 
 
-    public void dislikeComment(int commentId, LotusySimpleCallback callback) {
+    public static void dislikeComment(int commentId, LotusySimpleCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult());
             return;
@@ -110,12 +109,12 @@ public class CommentSDK {
     }
 
 
-    public void getCommentsNearLocation( LotusyLatLng latlng,
-                                         int radius,
-                                         boolean is_miles,
-                                         int start,
-                                         int size,
-                                         LotusyCommentListCallback callback ) {
+    public static void getCommentsNearLocation( LotusyLatLng latlng,
+                                                int radius,
+                                                boolean is_miles,
+                                                int start,
+                                                int size,
+                                                LotusyCommentListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -145,10 +144,10 @@ public class CommentSDK {
     }
 
 
-    public void getUserComments( int userId,
-                                 int start,
-                                 int size,
-                                 LotusyCommentListCallback callback ) {
+    public static void getUserComments( int userId,
+                                        int start,
+                                        int size,
+                                        LotusyCommentListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -163,10 +162,10 @@ public class CommentSDK {
     }
 
 
-    public void getBusinessComments( int businessId,
-                                     int start,
-                                     int size,
-                                     LotusyCommentListCallback callback ) {
+    public static void getBusinessComments( int businessId,
+                                            int start,
+                                            int size,
+                                            LotusyCommentListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -181,7 +180,7 @@ public class CommentSDK {
     }
 
 
-    public void createReply(int commentId, String message, LotusyReplyCallback callback) {
+    public static void createReply(int commentId, String message, LotusyReplyCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -201,10 +200,10 @@ public class CommentSDK {
     }
 
 
-    public void getCommentReplies( int commentId,
-                                   int start,
-                                   int size,
-                                   LotusyReplyListCallback callback ) {
+    public static void getCommentReplies( int commentId,
+                                          int start,
+                                          int size,
+                                          LotusyReplyListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -222,18 +221,28 @@ public class CommentSDK {
 // ==========================================================================================================
 
 
-    private static CommentSDK defaultSDK=null;
-
-    public static CommentSDK defaultSDK() {
-        if (defaultSDK==null) {
-            defaultSDK = new CommentSDK();
-        }
-        return defaultSDK;
-    }
-
     private static String getHost() {
-        return LotusyProperties.getHost("comment");
-    }
 
-    private CommentSDK() {}
+        String host = "";
+
+        switch (env()) {
+            case DEV:
+                host = "http://local.comment.lotusy.com/rest";
+                break;
+            case TEST:
+                host = "http://test.comment.lotusy.com/rest";
+                break;
+            case INT:
+                host = "http://int.comment.lotusy.com/rest";
+                break;
+            case STAG:
+                host = "http://staging.comment.lotusy.com/rest";
+                break;
+            case PROD:
+                host = "http://comment.lotusy.com/rest";
+                break;
+        }
+
+        return host;
+    }
 }

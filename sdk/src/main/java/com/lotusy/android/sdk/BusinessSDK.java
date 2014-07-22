@@ -14,7 +14,6 @@ import com.lotusy.android.sdk.domain.business.LotusyRatingCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
 import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
-import com.lotusy.android.sdk.utility.LotusyProperties;
 
 /**
  * Created by pshen on 2014-07-14.
@@ -22,13 +21,13 @@ import com.lotusy.android.sdk.utility.LotusyProperties;
 public class BusinessSDK extends LotusySDK {
 
 
-    public void createBusiness(LotusyBusiness business, LotusyBusinessCallback callback) {
+    public static void createBusiness(LotusyBusiness business, LotusyBusinessCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
         }
 
-        JsonObject body = this.populateBusiness(business);
+        JsonObject body = populateBusiness(business);
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/business");
@@ -40,7 +39,7 @@ public class BusinessSDK extends LotusySDK {
     }
 
 
-    public void getBusinessProfile(int businessId, LotusyBusinessCallback callback) {
+    public static void getBusinessProfile(int businessId, LotusyBusinessCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -55,12 +54,12 @@ public class BusinessSDK extends LotusySDK {
     }
 
 
-    public void getBusinessesNearLocation( LotusyLatLng latlng,
-                                           int radius,
-                                           boolean is_miles,
-                                           int start,
-                                           int size,
-                                           LotusyBusinessListCallback callback ) {
+    public static void getBusinessesNearLocation( LotusyLatLng latlng,
+                                                  int radius,
+                                                  boolean is_miles,
+                                                  int start,
+                                                  int size,
+                                                  LotusyBusinessListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -80,15 +79,15 @@ public class BusinessSDK extends LotusySDK {
     }
 
 
-    public void rateBusiness( int businessId,
-                              LotusyRating rating,
-                              LotusySimpleCallback callback ) {
+    public static void rateBusiness( int businessId,
+                                     LotusyRating rating,
+                                     LotusySimpleCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult());
             return;
         }
 
-        JsonObject body = this.populateRating(rating);
+        JsonObject body = populateRating(rating);
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/"+businessId+"/business");
@@ -100,7 +99,7 @@ public class BusinessSDK extends LotusySDK {
     }
 
 
-    public void getUserRating(int businessId, LotusyRatingCallback callback) {
+    public static void getUserRating(int businessId, LotusyRatingCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
@@ -121,7 +120,7 @@ public class BusinessSDK extends LotusySDK {
 // ==========================================================================================================
 
 
-    private JsonObject populateBusiness(LotusyBusiness business) {
+    private static JsonObject populateBusiness(LotusyBusiness business) {
 
         JsonObject body = new JsonObject();
 
@@ -166,7 +165,7 @@ public class BusinessSDK extends LotusySDK {
     }
 
 
-    private JsonObject populateRating(LotusyRating rating) {
+    private static JsonObject populateRating(LotusyRating rating) {
 
         JsonObject body = new JsonObject();
         body.addProperty("overall", rating.getOverall());
@@ -182,18 +181,28 @@ public class BusinessSDK extends LotusySDK {
 // ==========================================================================================================
 
 
-    private static BusinessSDK defaultSDK=null;
-
-    public static BusinessSDK defaultSDK() {
-        if (defaultSDK==null) {
-            defaultSDK = new BusinessSDK();
-        }
-        return defaultSDK;
-    }
-
     private static String getHost() {
-        return LotusyProperties.getHost("business");
-    }
 
-    private BusinessSDK() {}
+        String host = "";
+
+        switch (env()) {
+            case DEV:
+                host = "http://local.business.lotusy.com/rest";
+                break;
+            case TEST:
+                host = "http://test.business.lotusy.com/rest";
+                break;
+            case INT:
+                host = "http://int.business.lotusy.com/rest";
+                break;
+            case STAG:
+                host = "http://staging.business.lotusy.com/rest";
+                break;
+            case PROD:
+                host = "http://business.lotusy.com/rest";
+                break;
+        }
+
+        return host;
+    }
 }
