@@ -16,7 +16,7 @@ public class LotusyToken {
     private String accessToken;
     private String refreshToken;
     private String tokenType;
-    private Date expires_at;
+    private Date expiresAt;
 
     public int getUserId() {
         return userId;
@@ -50,11 +50,11 @@ public class LotusyToken {
         this.tokenType = tokenType;
     }
 
-    public Date getExpires_at() {
-        return expires_at;
+    public Date getExpiresAt() {
+        return expiresAt;
     }
 
-    public void setExpires_at(Date expires_at) {
-        this.expires_at = expires_at;
+    public void setExpiresAt(Date expiresAt) {
+        this.expiresAt = expiresAt;
     }
 }
