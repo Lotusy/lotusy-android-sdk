@@ -22,7 +22,7 @@ public class AccountSDK extends LotusySDK {
                                  LotusyTokenCallback callback) {
 
         JsonObject body = new JsonObject();
-        body.addProperty("id", externalType);
+        body.addProperty("id", externalRef);
         body.addProperty("username", userName);
         body.addProperty("nickname", nickName);
         body.addProperty("profile_pic", picture);

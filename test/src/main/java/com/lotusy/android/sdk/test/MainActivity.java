@@ -21,10 +21,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LotusySDK.setup("9D0E7CE8711F6F1CF87704557828A16E", LotusySDK.ENVIRONMENT.DEV);
+        LotusySDK.setup("9D0E7CE8711F6F1CF87704557828A16E", LotusySDK.ENVIRONMENT.PROD);
 
         AccountSDK.register(
-            "facebook", "1234567890", "pshen", "ppp", "", "Great guy", new LotusyTokenCallback() {
+            "facebook", "12345"+(Math.floor(1000000*Math.random())), "pshen", "ppp", "https://www.leanstartupmachine.com/images/default_profile_photo.png", "Great guy", new LotusyTokenCallback() {
                 @Override
                 public void callback(LotusyTaskResult result, LotusyToken token) {
                     if (result.isSuccess()) {
