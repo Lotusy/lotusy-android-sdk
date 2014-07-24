@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 
+import java.util.List;
+
 /**
  * Created by pshen on 2014-07-17.
  */
@@ -14,5 +16,5 @@ abstract public class LotusyReplyListCallback extends LotusyCallback {
 
     }
 
-    abstract public void callback(LotusyTaskResult result, LotusyReply[] reply);
+    abstract public void callback(LotusyTaskResult result, List<LotusyReply> reply);
 }

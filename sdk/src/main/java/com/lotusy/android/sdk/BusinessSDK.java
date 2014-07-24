@@ -2,8 +2,8 @@ package com.lotusy.android.sdk;
 
 import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusyAddress;
+import com.lotusy.android.sdk.domain.LotusyHours;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
-import com.lotusy.android.sdk.domain.LotusySchedule;
 import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
@@ -143,7 +143,7 @@ public class BusinessSDK extends LotusySDK {
             if (address.getZip()!=null) { body.addProperty("zip", address.getZip()); }
         }
 
-        LotusySchedule schedule = business.getSchedule();
+        LotusyHours schedule = business.getHours();
         if (schedule!=null) {
             JsonObject hours = new JsonObject();
             if (schedule.getMonday()!=null) { hours.addProperty("mon", schedule.getMonday()); }

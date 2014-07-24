@@ -1,16 +1,16 @@
 package com.lotusy.android.sdk.domain.business;
 
 import com.lotusy.android.sdk.domain.LotusyAddress;
+import com.lotusy.android.sdk.domain.LotusyHours;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
-import com.lotusy.android.sdk.domain.LotusySchedule;
 
 /**
  * Created by pshen on 2014-07-14.
  */
 public class LotusyBusiness {
 
-    private int id;
-    private int creatorId;
+    protected int id;
+    protected int creatorId;
     private String zhName;
     private String twName;
     private String enName;
@@ -23,7 +23,7 @@ public class LotusyBusiness {
     private String imageUrl;
     private int commentCount;
     private LotusyLatLng latlng;
-    private LotusySchedule schedule;
+    private LotusyHours hours;
     private LotusyAddress address;
     private LotusyRating rating;
 
@@ -33,8 +33,8 @@ public class LotusyBusiness {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCreatorId() {
+        return creatorId;
     }
 
     public String getZhName() {
@@ -109,20 +109,12 @@ public class LotusyBusiness {
         this.social = social;
     }
 
-    public int getCreatorId() {
-        return creatorId;
+    public LotusyHours getHours() {
+        return hours;
     }
 
-    public void setCreatorId(int creatorId) {
-        this.creatorId = creatorId;
-    }
-
-    public LotusySchedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(LotusySchedule schedule) {
-        this.schedule = schedule;
+    public void setHours(LotusyHours hours) {
+        this.hours = hours;
     }
 
     public LotusyRating getRating() { return rating; }

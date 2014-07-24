@@ -3,7 +3,7 @@ package com.lotusy.android.sdk.domain;
 /**
  * Created by pshen on 2014-07-15.
  */
-public class LotusySchedule {
+public class LotusyHours {
     private String monday;
     private String tuesday;
     private String wednesday;

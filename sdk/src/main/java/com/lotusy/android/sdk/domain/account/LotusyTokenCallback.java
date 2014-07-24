@@ -25,11 +25,11 @@ abstract public class LotusyTokenCallback extends LotusyCallback {
             calendar.add(Calendar.SECOND, expiresAt);
 
             LotusyToken.current = new LotusyToken();
-            LotusyToken.current.setAccessToken(accessToken);
-            LotusyToken.current.setRefreshToken(refreshToken);
-            LotusyToken.current.setTokenType(tokenType);
-            LotusyToken.current.setUserId(userId);
-            LotusyToken.current.setExpiresAt(calendar.getTime());
+            LotusyToken.current.accessToken = accessToken;
+            LotusyToken.current.refreshToken = refreshToken;
+            LotusyToken.current.tokenType = tokenType;
+            LotusyToken.current.userId = userId;
+            LotusyToken.current.expiresAt = calendar.getTime();
 
             result = new LotusyTaskResult();
             result.setStatusCode(0);
