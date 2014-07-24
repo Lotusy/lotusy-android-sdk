@@ -1,13 +1,19 @@
 package com.lotusy.android.sdk.utility;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusyAddress;
 import com.lotusy.android.sdk.domain.LotusyHours;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyRating;
+import com.lotusy.android.sdk.domain.comment.LotusyComment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by pshen on 2014-07-14.
@@ -69,6 +75,33 @@ public class LotusyUtility {
         return rating;
     }
 
+    public static LotusyComment parseCommentJson(JsonObject json) {
+        LotusyComment comment = new LotusyComment();
+
+        LotusyLatLng latlng = parseLatlngJson(json);
+        comment.setLatlng(latlng);
+
+        JsonArray imageLinkArr = json.get("image_links").getAsJsonArray();
+        List<String> imageLinks = parseImageLinks(imageLinkArr);
+        comment.setImageUris(imageLinks);
+
+        String message = json.get("message").getAsString();
+        int like = json.get("like_count").getAsInt();
+        int dislike = json.get("dislike_count").getAsInt();
+        int replies = json.get("reply_count").getAsInt();
+        int createTime = (-1)*json.get("create_time").getAsInt();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, createTime);
+
+        comment.setMessage(message);
+        comment.setLikeCount(like);
+        comment.setDislikeCount(dislike);
+        comment.setReplyCount(replies);
+        comment.setCreateTime(calendar.getTime());
+
+        return comment;
+    }
+
     public static LotusyLatLng parseLatlngJson(JsonObject json) {
         LotusyLatLng latlng = new LotusyLatLng();
 
@@ -121,5 +154,17 @@ public class LotusyUtility {
         hours.setHoliday(holiday);
 
         return hours;
+    }
+
+    public static List<String> parseImageLinks(JsonArray array) {
+        ArrayList<String> images = new ArrayList<String>();
+
+        Iterator<JsonElement> itr = array.iterator();
+        while(itr.hasNext()) {
+            String link = itr.next().getAsString();
+            images.add(link);
+        }
+
+        return images;
     }
 }
