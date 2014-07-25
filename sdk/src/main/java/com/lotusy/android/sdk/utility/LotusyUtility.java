@@ -30,35 +30,59 @@ public class LotusyUtility {
         LotusyAddress address = parseAddressJson(json);
         business.setAddress(address);
 
-        LotusyHours hours = parseHoursJson(json.get("hours").getAsJsonObject());
-        business.setHours(hours);
+        if (json.get("hours")!=null) {
+            LotusyHours hours = parseHoursJson(json.get("hours").getAsJsonObject());
+            business.setHours(hours);
+        }
+        if (json.get("rating")!=null) {
+            LotusyRating rating = parseRatingJson(json.get("rating").getAsJsonObject());
+            business.setRating(rating);
+        }
+        if (json.get("comment_count")!=null) {
+            int commentCount = json.get("comment_count").getAsInt();
+            business.setCommentCount(commentCount);
+        }
+        if (json.get("rating_count")!=null) {
+            int ratingCount = json.get("rating_count").getAsInt();
+            business.setRatingCount(ratingCount);
+        }
+        if (json.get("name_zh")!=null) {
+            String nameZh = json.get("name_zh").getAsString();
+            business.setZhName(nameZh);
+        }
+        if (json.get("name_tw")!=null) {
+            String nameTw = json.get("name_tw").getAsString();
+            business.setTwName(nameTw);
+        }
+        if (json.get("name_en")!=null) {
+            String nameEn = json.get("name_en").getAsString();
+            business.setEnName(nameEn);
+        }
+        if (json.get("price")!=null) {
+            String price = json.get("price").getAsString();
+            business.setPrice(price);
+        }
+        if (json.get("cash_only")!=null) {
+            boolean cachOnly = json.get("cash_only").getAsString().equals("Y");
+            business.setCashOnly(cachOnly);
+        }
+        if (json.get("verified")!=null) {
+            boolean verified = json.get("verified").getAsString().equals("Y");
+            business.setVerified(verified);
+        }
+        if (json.get("tel")!=null) {
+            String phone = json.get("tel").getAsString();
+            business.setPhone(phone);
+        }
+        if (json.get("website")!=null) {
+            String website = json.get("website").getAsString();
+            business.setWebsite(website);
+        }
+        if (json.get("social")!=null) {
+            String social = json.get("social").getAsString();
+            business.setSocial(social);
+        }
 
-        LotusyRating rating = parseRatingJson(json.get("rating").getAsJsonObject());
-        business.setRating(rating);
-
-        int commentCount = json.get("comment_count").getAsInt();
-        int ratingCount = json.get("rating_count").getAsInt();
-        String nameZh = json.get("name_zh").getAsString();
-        String nameTw = json.get("name_tw").getAsString();
-        String nameEn = json.get("name_en").getAsString();
-        String price = json.get("price").getAsString();
-        boolean cachOnly = json.get("cash_only").getAsString().equals("Y");
-        boolean verified = json.get("verified").getAsString().equals("Y");
-        String phone = json.get("tel").getAsString();
-        String website = json.get("website").getAsString();
-        String social = json.get("social").getAsString();
-
-        business.setCommentCount(commentCount);
-        business.setRatingCount(ratingCount);
-        business.setEnName(nameEn);
-        business.setZhName(nameZh);
-        business.setTwName(nameTw);
-        business.setPrice(price);
-        business.setCashOnly(cachOnly);
-        business.setVerified(verified);
-        business.setPhone(phone);
-        business.setWebsite(website);
-        business.setSocial(social);
 
         return business;
     }
@@ -66,19 +90,28 @@ public class LotusyUtility {
     public static LotusyRating parseRatingJson(JsonObject json) {
         LotusyRating rating = new LotusyRating();
 
-        int overall = json.get("overall").getAsInt();
-        int food = json.get("food").getAsInt();
-        int service = json.get("service").getAsInt();
-        int environment = json.get("environment").getAsInt();
-        int createTime = (-1)*json.get("create_time").getAsInt();
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, createTime);
-
-        rating.setOverall(overall);
-        rating.setFood(food);
-        rating.setService(service);
-        rating.setEnvironment(environment);
-        rating.setCreateTime(calendar.getTime());
+        if (json.get("overall")!=null) {
+            int overall = json.get("overall").getAsInt();
+            rating.setOverall(overall);
+        }
+        if (json.get("food")!=null) {
+            int food = json.get("food").getAsInt();
+            rating.setFood(food);
+        }
+        if (json.get("service")!=null) {
+            int service = json.get("service").getAsInt();
+            rating.setService(service);
+        }
+        if (json.get("environment")!=null) {
+            int environment = json.get("environment").getAsInt();
+            rating.setEnvironment(environment);
+        }
+        if (json.get("create_time")!=null) {
+            int createTime = (-1) * json.get("create_time").getAsInt();
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.SECOND, createTime);
+            rating.setCreateTime(calendar.getTime());
+        }
 
         return rating;
     }
@@ -89,23 +122,33 @@ public class LotusyUtility {
         LotusyLatLng latlng = parseLatlngJson(json);
         comment.setLatlng(latlng);
 
-        JsonArray imageLinkArr = json.get("image_links").getAsJsonArray();
-        List<String> imageLinks = parseImageLinks(imageLinkArr);
-        comment.setImageUris(imageLinks);
-
-        String message = json.get("message").getAsString();
-        int like = json.get("like_count").getAsInt();
-        int dislike = json.get("dislike_count").getAsInt();
-        int replies = json.get("reply_count").getAsInt();
-        int createTime = (-1)*json.get("create_time").getAsInt();
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, createTime);
-
-        comment.setMessage(message);
-        comment.setLikeCount(like);
-        comment.setDislikeCount(dislike);
-        comment.setReplyCount(replies);
-        comment.setCreateTime(calendar.getTime());
+        if (json.get("image_links")!=null) {
+            JsonArray imageLinkArr = json.get("image_links").getAsJsonArray();
+            List<String> imageLinks = parseImageLinks(imageLinkArr);
+            comment.setImageUris(imageLinks);
+        }
+        if (json.get("message")!=null) {
+            String message = json.get("message").getAsString();
+            comment.setMessage(message);
+        }
+        if (json.get("like_count")!=null) {
+            int like = json.get("like_count").getAsInt();
+            comment.setLikeCount(like);
+        }
+        if (json.get("dislike_count")!=null) {
+            int dislike = json.get("dislike_count").getAsInt();
+            comment.setDislikeCount(dislike);
+        }
+        if (json.get("reply_count")!=null) {
+            int replies = json.get("reply_count").getAsInt();
+            comment.setReplyCount(replies);
+        }
+        if (json.get("create_time")!=null) {
+            int createTime = (-1) * json.get("create_time").getAsInt();
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.SECOND, createTime);
+            comment.setCreateTime(calendar.getTime());
+        }
 
         return comment;
     }
@@ -113,15 +156,20 @@ public class LotusyUtility {
     public static LotusyReply parseReplyJson(JsonObject json) {
         LotusyReply reply = new LotusyReply();
 
-        String message = json.get("message").getAsString();
-        String nickName = json.get("nickname").getAsString();
-        int createTime = (-1)*json.get("create_time").getAsInt();
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, createTime);
-
-        reply.setMessage(message);
-        reply.setNickName(nickName);
-        reply.setCreateTime(calendar.getTime());
+        if (json.get("message")!=null) {
+            String message = json.get("message").getAsString();
+            reply.setMessage(message);
+        }
+        if (json.get("nickname")!=null) {
+            String nickName = json.get("nickname").getAsString();
+            reply.setNickName(nickName);
+        }
+        if (json.get("create_time")!=null) {
+            int createTime = (-1) * json.get("create_time").getAsInt();
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.SECOND, createTime);
+            reply.setCreateTime(calendar.getTime());
+        }
 
         return reply;
     }
@@ -129,11 +177,14 @@ public class LotusyUtility {
     public static LotusyLatLng parseLatlngJson(JsonObject json) {
         LotusyLatLng latlng = new LotusyLatLng();
 
-        double lat = json.get("lat").getAsDouble();
-        double lng = json.get("lng").getAsDouble();
-
-        latlng.setLat(lat);
-        latlng.setLng(lng);
+        if (json.get("lat")!=null) {
+            double lat = json.get("lat").getAsDouble();
+            latlng.setLat(lat);
+        }
+        if (json.get("lng")!=null) {
+            double lng = json.get("lng").getAsDouble();
+            latlng.setLng(lng);
+        }
 
         return latlng;
     }
@@ -141,17 +192,26 @@ public class LotusyUtility {
     public static LotusyAddress parseAddressJson(JsonObject json) {
         LotusyAddress address = new LotusyAddress();
 
-        String street = json.get("street").getAsString();
-        String city = json.get("city").getAsString();
-        String state = json.get("state").getAsString();
-        String country = json.get("country").getAsString();
-        String zip = json.get("zip").getAsString();
-
-        address.setCity(city);
-        address.setStreet(street);
-        address.setState(state);
-        address.setCountry(country);
-        address.setZip(zip);
+        if (json.get("street")!=null) {
+            String street = json.get("street").getAsString();
+            address.setStreet(street);
+        }
+        if (json.get("city")!=null) {
+            String city = json.get("city").getAsString();
+            address.setCity(city);
+        }
+        if (json.get("state")!=null) {
+            String state = json.get("state").getAsString();
+            address.setState(state);
+        }
+        if (json.get("country")!=null) {
+            String country = json.get("country").getAsString();
+            address.setCountry(country);
+        }
+        if (json.get("zip")!=null) {
+            String zip = json.get("zip").getAsString();
+            address.setZip(zip);
+        }
 
         return address;
     }
@@ -159,23 +219,38 @@ public class LotusyUtility {
     public static LotusyHours parseHoursJson(JsonObject json) {
         LotusyHours hours = new LotusyHours();
 
-        String mon = json.get("mon").getAsString();
-        String tue = json.get("tue").getAsString();
-        String wed = json.get("wed").getAsString();
-        String thu = json.get("thu").getAsString();
-        String fri = json.get("fri").getAsString();
-        String sat = json.get("sat").getAsString();
-        String sun = json.get("sun").getAsString();
-        String holiday = json.get("holiday").getAsString();
-
-        hours.setMonday(mon);
-        hours.setTuesday(tue);
-        hours.setWednesday(wed);
-        hours.setThursday(thu);
-        hours.setFriday(fri);
-        hours.setSaturday(sat);
-        hours.setSunday(sun);
-        hours.setHoliday(holiday);
+        if (json.get("mon")!=null) {
+            String mon = json.get("mon").getAsString();
+            hours.setMonday(mon);
+        }
+        if (json.get("tue")!=null) {
+            String tue = json.get("tue").getAsString();
+            hours.setTuesday(tue);
+        }
+        if (json.get("wed")!=null) {
+            String wed = json.get("wed").getAsString();
+            hours.setWednesday(wed);
+        }
+        if (json.get("thu")!=null) {
+            String thu = json.get("thu").getAsString();
+            hours.setThursday(thu);
+        }
+        if (json.get("fri")!=null) {
+            String fri = json.get("fri").getAsString();
+            hours.setFriday(fri);
+        }
+        if (json.get("sat")!=null) {
+            String sat = json.get("sat").getAsString();
+            hours.setSaturday(sat);
+        }
+        if (json.get("sun")!=null) {
+            String sun = json.get("sun").getAsString();
+            hours.setSunday(sun);
+        }
+        if (json.get("holiday")!=null) {
+            String holiday = json.get("holiday").getAsString();
+            hours.setHoliday(holiday);
+        }
 
         return hours;
     }
