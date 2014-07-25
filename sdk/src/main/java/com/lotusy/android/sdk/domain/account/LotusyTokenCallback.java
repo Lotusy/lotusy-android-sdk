@@ -16,20 +16,29 @@ abstract public class LotusyTokenCallback extends LotusyCallback {
         LotusyTaskResult result = null;
 
         if (status == LotusyCallbackStatus.SUCCESS) {
-            String accessToken = response.get("access_token").getAsString();
-            String refreshToken = response.get("access_token").getAsString();
-            int userId = response.get("access_token").getAsInt();
-            String tokenType = response.get("access_token").getAsString();
-            int expiresAt = response.get("access_token").getAsInt();
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.SECOND, expiresAt);
-
             LotusyToken.current = new LotusyToken();
-            LotusyToken.current.accessToken = accessToken;
-            LotusyToken.current.refreshToken = refreshToken;
-            LotusyToken.current.tokenType = tokenType;
-            LotusyToken.current.userId = userId;
-            LotusyToken.current.expiresAt = calendar.getTime();
+            if (response.get("access_token")!=null) {
+                String accessToken = response.get("access_token").getAsString();
+                LotusyToken.current.accessToken = accessToken;
+            }
+            if (response.get("refresh_token")!=null) {
+                String refreshToken = response.get("refresh_token").getAsString();
+                LotusyToken.current.refreshToken = refreshToken;
+            }
+            if (response.get("user_id")!=null) {
+                int userId = response.get("user_id").getAsInt();
+                LotusyToken.current.userId = userId;
+            }
+            if (response.get("token_type")!=null) {
+                String tokenType = response.get("token_type").getAsString();
+                LotusyToken.current.tokenType = tokenType;
+            }
+            if (response.get("expires_in")!=null) {
+                int expiresAt = response.get("expires_in").getAsInt();
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.SECOND, expiresAt);
+                LotusyToken.current.expiresAt = calendar.getTime();
+            }
 
             result = new LotusyTaskResult();
             result.setStatusCode(0);

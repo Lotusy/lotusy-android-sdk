@@ -17,31 +17,50 @@ abstract public class LotusyUserCallback extends LotusyCallback {
         LotusyUser user = null;
 
         if (status == LotusyCallbackStatus.SUCCESS) {
-            int userId = response.get("id").getAsInt();
-            String externalRef = response.get("external_ref").getAsString();
-            String externalType = response.get("external_type").getAsString();
-            String userName = response.get("username").getAsString();
-            String nickName = response.get("nickname").getAsString();
-            String profilePic = response.get("profile_pic").getAsString();
-            String description = response.get("description").getAsString();
-            boolean superuser = response.get("superuser").getAsString().equals("Y");
-            boolean blocked = response.get("blocked").getAsString().equals("Y");
-            int lastLogin = (-1)*response.get("last_login").getAsInt();
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.SECOND, lastLogin);
-
             user = new LotusyUser();
 
-            user.id = userId;
-            user.description = description;
-            user.externalRef = externalRef;
-            user.externalType = externalType;
-            user.userName = userName;
-            user.nickName = nickName;
-            user.picture = profilePic;
-            user.lastLogin = calendar.getTime();
-            user.superUser = superuser;
-            user.blocked = blocked;
+            if (response.get("id")!=null) {
+                int userId = response.get("id").getAsInt();
+                user.id = userId;
+            }
+            if (response.get("external_ref")!=null) {
+                String externalRef = response.get("external_ref").getAsString();
+                user.externalRef = externalRef;
+            }
+            if (response.get("external_type")!=null) {
+                String externalType = response.get("external_type").getAsString();
+                user.externalType = externalType;
+            }
+            if (response.get("username")!=null) {
+                String userName = response.get("username").getAsString();
+                user.userName = userName;
+            }
+            if (response.get("nickname")!=null) {
+                String nickName = response.get("nickname").getAsString();
+                user.nickName = nickName;
+            }
+            if (response.get("profile_pic")!=null) {
+                String profilePic = response.get("profile_pic").getAsString();
+                user.picture = profilePic;
+            }
+            if (response.get("description")!=null) {
+                String description = response.get("description").getAsString();
+                user.description = description;
+            }
+            if (response.get("superuser")!=null) {
+                boolean superuser = response.get("superuser").getAsString().equals("Y");
+                user.superUser = superuser;
+            }
+            if (response.get("blocked")!=null) {
+                boolean blocked = response.get("blocked").getAsString().equals("Y");
+                user.blocked = blocked;
+            }
+            if (response.get("last_login")!=null) {
+                int lastLogin = (-1) * response.get("last_login").getAsInt();
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.SECOND, lastLogin);
+                user.lastLogin = calendar.getTime();
+            }
 
             result = new LotusyTaskResult();
             result.setSuccess(true);
