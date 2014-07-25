@@ -8,7 +8,7 @@ import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyBusinessCallback;
-import com.lotusy.android.sdk.domain.business.LotusyBusinessListCallback;
+import com.lotusy.android.sdk.domain.business.LotusyBusinessLocationListCallback;
 import com.lotusy.android.sdk.domain.business.LotusyRating;
 import com.lotusy.android.sdk.domain.business.LotusyRatingCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
@@ -59,7 +59,7 @@ public class BusinessSDK extends LotusySDK {
                                                   boolean is_miles,
                                                   int start,
                                                   int size,
-                                                  LotusyBusinessListCallback callback ) {
+                                                  LotusyBusinessLocationListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;

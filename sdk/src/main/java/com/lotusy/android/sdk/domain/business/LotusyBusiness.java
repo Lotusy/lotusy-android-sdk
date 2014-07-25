@@ -22,6 +22,7 @@ public class LotusyBusiness {
     private String social;
     private String imageUrl;
     private int commentCount;
+    private int ratingCount;
     private LotusyLatLng latlng;
     private LotusyHours hours;
     private LotusyAddress address;
@@ -147,5 +148,13 @@ public class LotusyBusiness {
 
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
     }
 }

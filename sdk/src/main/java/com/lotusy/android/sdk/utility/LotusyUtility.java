@@ -33,6 +33,11 @@ public class LotusyUtility {
         LotusyHours hours = parseHoursJson(json.get("hours").getAsJsonObject());
         business.setHours(hours);
 
+        LotusyRating rating = parseRatingJson(json.get("rating").getAsJsonObject());
+        business.setRating(rating);
+
+        int commentCount = json.get("comment_count").getAsInt();
+        int ratingCount = json.get("rating_count").getAsInt();
         String nameZh = json.get("name_zh").getAsString();
         String nameTw = json.get("name_tw").getAsString();
         String nameEn = json.get("name_en").getAsString();
@@ -43,6 +48,8 @@ public class LotusyUtility {
         String website = json.get("website").getAsString();
         String social = json.get("social").getAsString();
 
+        business.setCommentCount(commentCount);
+        business.setRatingCount(ratingCount);
         business.setEnName(nameEn);
         business.setZhName(nameZh);
         business.setTwName(nameTw);

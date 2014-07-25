@@ -8,6 +8,7 @@ import com.lotusy.android.sdk.domain.account.LotusyUser;
 import com.lotusy.android.sdk.domain.comment.LotusyCommentCallback;
 import com.lotusy.android.sdk.domain.comment.LotusyCommentCreateCallback;
 import com.lotusy.android.sdk.domain.comment.LotusyCommentListCallback;
+import com.lotusy.android.sdk.domain.comment.LotusyCommentLocationListCallback;
 import com.lotusy.android.sdk.domain.comment.LotusyReplyCallback;
 import com.lotusy.android.sdk.domain.comment.LotusyReplyListCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
@@ -114,7 +115,7 @@ public class CommentSDK extends LotusySDK {
                                                 boolean is_miles,
                                                 int start,
                                                 int size,
-                                                LotusyCommentListCallback callback ) {
+                                                LotusyCommentLocationListCallback callback ) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
