@@ -9,6 +9,7 @@ import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyRating;
 import com.lotusy.android.sdk.domain.comment.LotusyComment;
+import com.lotusy.android.sdk.domain.comment.LotusyReply;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -100,6 +101,22 @@ public class LotusyUtility {
         comment.setCreateTime(calendar.getTime());
 
         return comment;
+    }
+
+    public static LotusyReply parseReplyJson(JsonObject json) {
+        LotusyReply reply = new LotusyReply();
+
+        String message = json.get("message").getAsString();
+        String nickName = json.get("nickname").getAsString();
+        int createTime = (-1)*json.get("create_time").getAsInt();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, createTime);
+
+        reply.setMessage(message);
+        reply.setNickName(nickName);
+        reply.setCreateTime(calendar.getTime());
+
+        return reply;
     }
 
     public static LotusyLatLng parseLatlngJson(JsonObject json) {

@@ -7,10 +7,10 @@ import java.util.Date;
  */
 public class LotusyReply {
 
-    private int id;
+    protected int id;
+    protected int userId;
+    protected int commentId;
     private String nickName;
-    private int userId;
-    private int commentId;
     private String message;
     private Date createTime;
 
@@ -18,8 +18,12 @@ public class LotusyReply {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getCommentId() {
+        return commentId;
     }
 
     public String getNickName() {
@@ -28,22 +32,6 @@ public class LotusyReply {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(int commentId) {
-        this.commentId = commentId;
     }
 
     public String getMessage() {
