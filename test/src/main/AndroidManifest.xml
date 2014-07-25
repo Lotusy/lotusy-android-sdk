@@ -17,6 +17,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AccountApis"
+            android:label="@string/title_activity_account_apis" >
+        </activity>
+        <activity
+            android:name=".BusinessApis"
+            android:label="@string/title_activity_business_apis" >
+        </activity>
+        <activity
+            android:name=".CommentApis"
+            android:label="@string/title_activity_comment_apis" >
+        </activity>
+        <activity
+            android:name=".ImageApis"
+            android:label="@string/title_activity_image_apis" >
+        </activity>
     </application>
 
 </manifest>

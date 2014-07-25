@@ -9,11 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lotusy.android.sdk.AccountSDK;
 import com.lotusy.android.sdk.LotusySDK;
-import com.lotusy.android.sdk.domain.account.LotusyToken;
-import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
-import com.lotusy.android.sdk.task.LotusyTaskResult;
+import com.lotusy.android.sdk.test.controller.MainActivityController;
 
 
 public class MainActivity extends Activity {
@@ -23,17 +20,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         LotusySDK.setup("9D0E7CE8711F6F1CF87704557828A16E", LotusySDK.ENVIRONMENT.PROD);
 
-        AccountSDK.register(
-            "facebook", "12345"+(Math.floor(1000000*Math.random())), "pshen", "ppp", "https://www.leanstartupmachine.com/images/default_profile_photo.png", "Great guy", new LotusyTokenCallback() {
-                @Override
-                public void callback(LotusyTaskResult result, LotusyToken token) {
-                    if (result.isSuccess()) {
-                        LotusyToken.current();
-                    }
-                }
-            }
-        );
-
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
@@ -42,6 +28,11 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        MainActivityController.init(this);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

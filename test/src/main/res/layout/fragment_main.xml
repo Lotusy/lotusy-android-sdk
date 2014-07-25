@@ -11,6 +11,65 @@
     <TextView
         android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Account Apis"
+            android:id="@+id/accountClick"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.15"
+            android:clickable="true"
+            android:singleLine="false"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#ff008080" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Business Apis"
+            android:id="@+id/businessClick"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.15"
+            android:clickable="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#ff008080" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Comment Apis"
+            android:id="@+id/commentClick"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.15"
+            android:clickable="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#ff008080" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Image Apis"
+            android:id="@+id/imageClick"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.15"
+            android:clickable="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#008080" />
+    </LinearLayout>
 
 </RelativeLayout>

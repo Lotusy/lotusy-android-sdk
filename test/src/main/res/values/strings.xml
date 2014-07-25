@@ -4,5 +4,9 @@
     <string name="app_name">Test</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_account_apis">AccountApis</string>
+    <string name="title_activity_business_apis">BusinessApis</string>
+    <string name="title_activity_comment_apis">CommentApis</string>
+    <string name="title_activity_image_apis">ImageApis</string>
 
 </resources>
