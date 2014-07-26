@@ -58,7 +58,7 @@ public class AccountSDK extends LotusySDK {
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
-        param.setUri(getHost()+"/profile/");
+        param.setUri(getHost()+"/profile");
         param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
@@ -73,7 +73,7 @@ public class AccountSDK extends LotusySDK {
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
-        param.setUri(getHost()+"/" + userId + "/profile/");
+        param.setUri(getHost()+"/" + userId + "/profile");
         param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
@@ -105,7 +105,7 @@ public class AccountSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/profile");
-        param.setMethod("POST");
+        param.setMethod("PUT");
         param.setBody(body.toString());
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));

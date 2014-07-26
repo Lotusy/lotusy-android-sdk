@@ -11,7 +11,31 @@ abstract public class LotusySimpleCallback extends LotusyCallback {
 
     @Override
     protected void doCallback(LotusyCallbackStatus status, JsonObject response) {
+        LotusyTaskResult result = null;
 
+        if (status == LotusyCallbackStatus.SUCCESS) {
+            result = new LotusyTaskResult();
+            result.setStatusCode(0);
+            result.setSuccess(true);
+        }
+        else if (status == LotusyCallbackStatus.ERROR) {
+            result = new LotusyTaskResult();
+            result.setStatusCode(1);
+            result.setSuccess(false);
+
+            String description = response.get("description").getAsString();
+            result.addError(description);
+        }
+        else if (status == LotusyCallbackStatus.FAILURE) {
+            result = new LotusyTaskResult();
+            result.setStatusCode(2);
+            result.setSuccess(false);
+
+            String description = response.get("description").getAsString();
+            result.addError(description);
+        }
+
+        this.callback(result);
     }
 
     abstract public void callback(LotusyTaskResult result);
