@@ -8,5 +8,6 @@
     <string name="title_activity_business_apis">BusinessApis</string>
     <string name="title_activity_comment_apis">CommentApis</string>
     <string name="title_activity_image_apis">ImageApis</string>
+    <string name="title_activity_result">ResultActivity</string>
 
 </resources>

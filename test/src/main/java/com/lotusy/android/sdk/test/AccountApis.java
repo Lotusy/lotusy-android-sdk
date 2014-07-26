@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.lotusy.android.sdk.test.controller.AccountApisController;
 
 public class AccountApis extends Activity {
 
@@ -12,7 +15,6 @@ public class AccountApis extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_apis);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,5 +33,35 @@ public class AccountApis extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onRegisterClick(View v){
+        if(v.getId() == R.id.register){
+            AccountApisController.registerUser(this);
+        }
+    }
+
+    public void onLoginClick(View v){
+        if(v.getId() == R.id.login){
+            AccountApisController.loginUser(this);
+        }
+    }
+
+    public void onCurrentClick(View v){
+        if(v.getId() == R.id.current){
+            AccountApisController.getCurrentProfile(this);
+        }
+    }
+
+    public void onGetProfileClick(View v){
+        if(v.getId() == R.id.profile){
+            AccountApisController.getProfile(this);
+        }
+    }
+
+    public void onUpdateClick(View v){
+        if(v.getId() == R.id.update){
+            AccountApisController.updateProfile(this);
+        }
     }
 }

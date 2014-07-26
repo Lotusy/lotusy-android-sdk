@@ -33,6 +33,10 @@
             android:name=".ImageApis"
             android:label="@string/title_activity_image_apis" >
         </activity>
+        <activity
+            android:name=".ResultActivity"
+            android:label="@string/title_activity_result" >
+        </activity>
     </application>
 
 </manifest>
