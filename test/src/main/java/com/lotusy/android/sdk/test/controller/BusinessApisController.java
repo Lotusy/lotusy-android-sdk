@@ -182,4 +182,9 @@ public class BusinessApisController {
             }
         });
     }
+
+
+    public static int current() {
+        return businessId;
+    }
 }

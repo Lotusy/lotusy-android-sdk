@@ -100,7 +100,7 @@ public class LotusyRestTransactionTask implements Runnable {
         Object requestBody = this.param.getBody();
 
         if( requestBody != null ) {
-            entity = new StringEntity( (String)requestBody );
+            entity = new StringEntity( (String)requestBody, "UTF-8" );
             entity.setContentType("application/json");
         }
         else {

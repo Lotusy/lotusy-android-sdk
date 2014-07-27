@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.lotusy.android.sdk.test.controller.CommentApisController;
+
 public class CommentApis extends Activity {
 
     @Override
@@ -35,11 +37,11 @@ public class CommentApis extends Activity {
     }
 
     public void onCreateCommentClick(View view) {
-
+        CommentApisController.createComment(this);
     }
 
     public void onGetCommentClick(View view) {
-
+        CommentApisController.getCommentDetail(this);
     }
 
     public void onLikeCommentClick(View view) {
