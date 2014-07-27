@@ -6,41 +6,41 @@ import java.util.Date;
  * Created by pshen on 2014-07-15.
  */
 public class LotusyRating {
-    private int overall;
-    private int food;
-    private int service;
-    private int environment;
+    private double overall;
+    private double food;
+    private double service;
+    private double environment;
     private Date createTime;
 
-    public int getOverall() {
+    public double getOverall() {
         return overall;
     }
 
-    public void setOverall(int overall) {
+    public void setOverall(double overall) {
         this.overall = overall;
     }
 
-    public int getFood() {
+    public double getFood() {
         return food;
     }
 
-    public void setFood(int food) {
+    public void setFood(double food) {
         this.food = food;
     }
 
-    public int getService() {
+    public double getService() {
         return service;
     }
 
-    public void setService(int service) {
+    public void setService(double service) {
         this.service = service;
     }
 
-    public int getEnvironment() {
+    public double getEnvironment() {
         return environment;
     }
 
-    public void setEnvironment(int environment) {
+    public void setEnvironment(double environment) {
         this.environment = environment;
     }
 

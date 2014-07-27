@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class CommentApis extends Activity {
 
@@ -31,5 +32,45 @@ public class CommentApis extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onCreateCommentClick(View view) {
+
+    }
+
+    public void onGetCommentClick(View view) {
+
+    }
+
+    public void onLikeCommentClick(View view) {
+
+    }
+
+    public void onDislikeCommentClick(View view) {
+
+    }
+
+    public void onDeleteCommentClick(View view) {
+
+    }
+
+    public void onUserCommentClick(View view) {
+
+    }
+
+    public void onBusinessCommentClick(View view) {
+
+    }
+
+    public void onLocationCommentClick(View view) {
+
+    }
+
+    public void onCreateReplyClick(View view) {
+
+    }
+
+    public void onGetRepliesClick(View view) {
+
     }
 }

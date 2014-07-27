@@ -1,16 +1,140 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.lotusy.android.sdk.test.CommentApis">
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:minHeight="900dp">
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Comment"
+                android:id="@+id/comment_create"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onCreateCommentClick" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Comment Profile"
+                android:id="@+id/comment_profile"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onGetCommentClick"
+                android:layout_below="@+id/comment_create"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Comment Like"
+                android:id="@+id/comment_like"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onLikeCommentClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_profile"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Comment Dislike"
+                android:id="@+id/comment_dislike"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onDislikeCommentClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_like"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Comment Delete"
+                android:id="@+id/comment_delete"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onDeleteCommentClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_dislike"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="User Comments"
+                android:id="@+id/comment_user"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onUserCommentClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_delete"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Business Comments"
+                android:id="@+id/comment_business"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onBusinessCommentClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_user"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Location Comments"
+                android:id="@+id/comment_location"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onLocationCommentClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_business"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Reply"
+                android:id="@+id/comment_reply"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onCreateReplyClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_location"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Comment Replies"
+                android:id="@+id/comment_replies"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onGetRepliesClick"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_reply"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

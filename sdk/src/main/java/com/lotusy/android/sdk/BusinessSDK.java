@@ -90,7 +90,7 @@ public class BusinessSDK extends LotusySDK {
         JsonObject body = populateRating(rating);
 
         LotusyTaskParam param = new LotusyTaskParam();
-        param.setUri(getHost()+"/"+businessId+"/business");
+        param.setUri(getHost()+"/"+businessId+"/rate");
         param.setMethod("POST");
         param.setBody(body.toString());
 
@@ -130,9 +130,9 @@ public class BusinessSDK extends LotusySDK {
             body.addProperty("lng", latlng.getLng());
         }
 
-        if (business.getZhName()!=null) { body.addProperty("zh_name", business.getZhName()); }
-        if (business.getTwName()!=null) { body.addProperty("tw_name", business.getTwName()); }
-        if (business.getEnName()!=null) { body.addProperty("en_name", business.getEnName()); }
+        if (business.getZhName()!=null) { body.addProperty("name_zh", business.getZhName()); }
+        if (business.getTwName()!=null) { body.addProperty("name_tw", business.getTwName()); }
+        if (business.getEnName()!=null) { body.addProperty("name_en", business.getEnName()); }
 
         LotusyAddress address = business.getAddress();
         if (address!=null) {
@@ -153,6 +153,8 @@ public class BusinessSDK extends LotusySDK {
             if (schedule.getFriday()!=null) { hours.addProperty("fri", schedule.getFriday()); }
             if (schedule.getSaturday()!=null) { hours.addProperty("sat", schedule.getSaturday()); }
             if (schedule.getSunday()!=null) { hours.addProperty("sun", schedule.getSunday()); }
+            if (schedule.getHoliday()!=null) { hours.addProperty("holiday", schedule.getSunday()); }
+            body.add("hours", hours);
         }
 
         body.addProperty("cach_only", business.isCashOnly() ? "Y" : "N");

@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.lotusy.android.sdk.test.R;
+import android.view.View;
+
+import com.lotusy.android.sdk.test.controller.BusinessApisController;
 
 public class BusinessApis extends Activity {
 
@@ -32,5 +34,25 @@ public class BusinessApis extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onCreateBusinessClick(View view) {
+        BusinessApisController.createBusiness(this);
+    }
+
+    public void onBusinessProfileClick(View view) {
+        BusinessApisController.businessProfile(this);
+    }
+
+    public void onBusinessLocationClick(View view) {
+        BusinessApisController.locationBusiness(this);
+    }
+
+    public void onBusinessRateClick(View view) {
+        BusinessApisController.rateBusiness(this);
+    }
+
+    public void onBusinessUserRateClick(View view) {
+        BusinessApisController.userBusinessRate(this);
     }
 }

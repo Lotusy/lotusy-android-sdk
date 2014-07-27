@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lotusy.android.sdk.test.AccountApis;
+import com.lotusy.android.sdk.test.BusinessApis;
+import com.lotusy.android.sdk.test.CommentApis;
+import com.lotusy.android.sdk.test.ImageApis;
 import com.lotusy.android.sdk.test.R;
 
 /**
@@ -31,21 +33,24 @@ public class MainActivityController {
             TextView businessApi = (TextView) activity.findViewById(R.id.businessClick);
             businessApi.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Toast.makeText(myActivity, "Business Api clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(myActivity, BusinessApis.class);
+                    myActivity.startActivity(intent);
                 }
             });
 
             TextView commentApi = (TextView) activity.findViewById(R.id.commentClick);
             commentApi.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Toast.makeText(myActivity, "Comment Api clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(myActivity, CommentApis.class);
+                    myActivity.startActivity(intent);
                 }
             });
 
             TextView imageApi = (TextView) activity.findViewById(R.id.imageClick);
             imageApi.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Toast.makeText(myActivity, "Image Api clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(myActivity, ImageApis.class);
+                    myActivity.startActivity(intent);
                 }
             });
         }

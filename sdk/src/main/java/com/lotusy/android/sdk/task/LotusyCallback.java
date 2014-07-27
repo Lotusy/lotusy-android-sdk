@@ -2,7 +2,6 @@ package com.lotusy.android.sdk.task;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 
 /**
  * Created by pshen on 2014-07-17.
@@ -16,7 +15,7 @@ abstract public class LotusyCallback {
         JsonParser parser = new JsonParser();
         try {
             jsonResponse = (JsonObject) parser.parse(response);
-        } catch (JsonSyntaxException e) {
+        } catch (Exception e) {
             JsonObject error = new JsonObject();
 
             error.addProperty("status", "failure");

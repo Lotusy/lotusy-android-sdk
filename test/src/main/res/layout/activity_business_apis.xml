@@ -8,9 +8,62 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.lotusy.android.sdk.test.BusinessApis">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Business"
+        android:id="@+id/create_business"
+        android:layout_alignParentLeft="true"
+        android:height="60dp"
+        android:background="#008080"
+        android:onClick="onCreateBusinessClick" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Profile"
+        android:id="@+id/business_profile"
+        android:height="60dp"
+        android:background="#008080"
+        android:onClick="onBusinessProfileClick"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/create_business"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Business Location"
+        android:id="@+id/business_location"
+        android:height="60dp"
+        android:background="#008080"
+        android:onClick="onBusinessLocationClick"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/business_profile"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Business Rate"
+        android:id="@+id/business_rate"
+        android:height="60dp"
+        android:background="#008080"
+        android:onClick="onBusinessRateClick"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/business_location"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Business User Rate"
+        android:id="@+id/business_user_rate"
+        android:height="60dp"
+        android:background="#008080"
+        android:onClick="onBusinessUserRateClick"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/business_rate"
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>
