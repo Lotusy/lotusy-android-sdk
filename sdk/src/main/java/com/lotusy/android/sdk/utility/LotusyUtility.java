@@ -143,6 +143,10 @@ public class LotusyUtility {
             int replies = json.get("reply_count").getAsInt();
             comment.setReplyCount(replies);
         }
+        if (json.get("is_deleted")!=null && !json.get("is_deleted").isJsonNull()) {
+            boolean deleted = json.get("is_deleted").getAsString().equals("Y");
+            comment.setDeleted(deleted);
+        }
         if (json.get("create_time")!=null && !json.get("create_time").isJsonNull()) {
             int createTime = (-1) * json.get("create_time").getAsInt();
             Calendar calendar = Calendar.getInstance();

@@ -19,6 +19,7 @@ public class LotusyComment {
     private int dislikeCount;
     private Date createTime;
     private int replyCount;
+    private boolean isDeleted;
     private List<String> imageUris;
 
     public int getId() {
@@ -87,5 +88,13 @@ public class LotusyComment {
 
     public void setImageUris(List<String> imageUris) {
         this.imageUris = imageUris;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

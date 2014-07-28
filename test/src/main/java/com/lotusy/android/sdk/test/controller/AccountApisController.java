@@ -133,4 +133,9 @@ public class AccountApisController {
             }
         });
     }
+
+
+    public static int current() {
+        return userId;
+    }
 }

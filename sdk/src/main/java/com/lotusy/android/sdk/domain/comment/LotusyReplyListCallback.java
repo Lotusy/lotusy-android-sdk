@@ -31,11 +31,11 @@ abstract public class LotusyReplyListCallback extends LotusyCallback {
                 JsonObject element = itr.next().getAsJsonObject();
 
                 LotusyReply reply = LotusyUtility.parseReplyJson(element);
-                int replyId = response.get("id").getAsInt();
+                int replyId = element.get("id").getAsInt();
                 reply.id = replyId;
-                int commentId = response.get("comment_id").getAsInt();
+                int commentId = element.get("comment_id").getAsInt();
                 reply.commentId = commentId;
-                int userId = response.get("user_id").getAsInt();
+                int userId = element.get("user_id").getAsInt();
                 reply.userId = userId;
 
                 replies.add(reply);
@@ -65,5 +65,5 @@ abstract public class LotusyReplyListCallback extends LotusyCallback {
         this.callback(result, replies);
     }
 
-    abstract public void callback(LotusyTaskResult result, List<LotusyReply> reply);
+    abstract public void callback(LotusyTaskResult result, List<LotusyReply> replies);
 }

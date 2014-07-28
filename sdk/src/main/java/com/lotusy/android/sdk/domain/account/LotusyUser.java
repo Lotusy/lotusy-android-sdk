@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class LotusyUser {
 
-    private static LotusyUser current;
+    protected static LotusyUser current;
 
     public static LotusyUser current() {
         return current;

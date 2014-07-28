@@ -67,5 +67,5 @@ abstract public class LotusyCommentLocationListCallback extends LotusyCallback {
         this.callback(result, comments);
     }
 
-    abstract public void callback(LotusyTaskResult result, Map<Double, LotusyComment> comment);
+    abstract public void callback(LotusyTaskResult result, Map<Double, LotusyComment> comments);
 }

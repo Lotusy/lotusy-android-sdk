@@ -45,34 +45,34 @@ public class CommentApis extends Activity {
     }
 
     public void onLikeCommentClick(View view) {
-
+        CommentApisController.likeComment(this);
     }
 
     public void onDislikeCommentClick(View view) {
-
+        CommentApisController.dislikeComment(this);
     }
 
     public void onDeleteCommentClick(View view) {
-
+        CommentApisController.deleteComment(this);
     }
 
     public void onUserCommentClick(View view) {
-
+        CommentApisController.userComments(this);
     }
 
     public void onBusinessCommentClick(View view) {
-
+        CommentApisController.businessComments(this);
     }
 
     public void onLocationCommentClick(View view) {
-
+        CommentApisController.locationComments(this);
     }
 
     public void onCreateReplyClick(View view) {
-
+        CommentApisController.createReply(this);
     }
 
     public void onGetRepliesClick(View view) {
-
+        CommentApisController.commentReplies(this);
     }
 }

@@ -58,7 +58,7 @@ public class CommentSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/comment/"+commentId);
-        param.setBody("GET");
+        param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -73,7 +73,7 @@ public class CommentSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/comment/"+commentId);
-        param.setBody("DELETE");
+        param.setMethod("DELETE");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -88,7 +88,7 @@ public class CommentSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/comment/"+commentId+"/like");
-        param.setBody("PUT");
+        param.setMethod("PUT");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -103,7 +103,7 @@ public class CommentSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/comment/"+commentId+"/dislike");
-        param.setBody("PUT");
+        param.setMethod("PUT");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -138,7 +138,7 @@ public class CommentSDK extends LotusySDK {
                                         "&is_miles="+(is_miles ? "true" : "false")+
                                         "&start="+start+
                                         "&size="+size);
-        param.setBody("GET");
+        param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -156,7 +156,7 @@ public class CommentSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/user/"+userId+"/comments?&start="+start+"&size="+size);
-        param.setBody("GET");
+        param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -174,7 +174,7 @@ public class CommentSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/business/"+businessId+"/comments?start="+start+"&size="+size);
-        param.setBody("GET");
+        param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -193,8 +193,9 @@ public class CommentSDK extends LotusySDK {
         body.addProperty("nickname", LotusyUser.current().getNickName());
 
         LotusyTaskParam param = new LotusyTaskParam();
-        param.setUri(getHost()+"/"+commentId+"/replay");
-        param.setBody("POST");
+        param.setUri(getHost()+"/"+commentId+"/reply");
+        param.setMethod("POST");
+        param.setBody(body.toString());
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
@@ -212,7 +213,7 @@ public class CommentSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/"+commentId+"/replies?start="+start+"&size="+size);
-        param.setBody("GET");
+        param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
