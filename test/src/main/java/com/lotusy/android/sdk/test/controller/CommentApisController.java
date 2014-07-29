@@ -250,4 +250,9 @@ public class CommentApisController {
             }
         });
     }
+
+
+    public static int current() {
+        return commentId;
+    }
 }

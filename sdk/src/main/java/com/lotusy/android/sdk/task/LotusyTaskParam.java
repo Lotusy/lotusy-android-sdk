@@ -40,6 +40,10 @@ public class LotusyTaskParam {
         this.headers.put(key, value);
     }
 
+    public void setHeader(Map<String, String> headers) {
+        this.headers = headers;
+    }
+
     public Map<String, String> getHeaders() {
         return headers;
     }
