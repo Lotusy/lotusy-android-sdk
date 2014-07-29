@@ -69,6 +69,7 @@ public class ImageSDK extends LotusySDK {
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
+        param.setHeader(LotusySDK.getImageHeaders());
         param.setUri(getHost()+"/comment/"+commentId);
         param.setFile(stream);
         param.setMethod("POST");
@@ -87,6 +88,7 @@ public class ImageSDK extends LotusySDK {
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
+        param.setHeader(LotusySDK.getImageHeaders());
         param.setUri(getHost()+"/business/"+businessId);
         param.setFile(stream);
         param.setMethod("POST");
@@ -103,6 +105,7 @@ public class ImageSDK extends LotusySDK {
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
+        param.setHeader(LotusySDK.getImageHeaders());
         param.setUri(getHost()+"/user");
         param.setFile(stream);
         param.setMethod("POST");

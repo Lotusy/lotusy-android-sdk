@@ -15,8 +15,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -51,15 +49,13 @@ public class LotusyRestTransactionTask implements Runnable {
 
                 this.callback.parseResponse(response);
             }
-        } catch (FileNotFoundException e) {
         } catch (UnsupportedEncodingException e) {
         } catch (ClientProtocolException e) {
         } catch (IOException e) {}
     }
 
 
-    private HttpRequestBase prepareRequest()
-            throws FileNotFoundException, UnsupportedEncodingException {
+    private HttpRequestBase prepareRequest() throws UnsupportedEncodingException {
 
         String url = this.param.getUri();
 
@@ -94,8 +90,7 @@ public class LotusyRestTransactionTask implements Runnable {
         return request;
     }
 
-    private AbstractHttpEntity getReuqestEntity()
-            throws FileNotFoundException, UnsupportedEncodingException {
+    private AbstractHttpEntity getReuqestEntity() throws UnsupportedEncodingException {
         AbstractHttpEntity entity = null;
         Object requestBody = this.param.getBody();
 
@@ -123,10 +118,8 @@ public class LotusyRestTransactionTask implements Runnable {
     }
 
 
-    protected FileInputStream prepareFileRequestBody() throws FileNotFoundException {
-        FileInputStream atReturn = null;
-
-        atReturn = (FileInputStream)this.param.getFile();
+    protected InputStream prepareFileRequestBody() {
+        InputStream atReturn = this.param.getFile();
 
         return atReturn;
     }

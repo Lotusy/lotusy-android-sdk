@@ -24,6 +24,18 @@ abstract public class LotusySDK {
         return headers;
     }
 
+    public static Map<String, String> getImageHeaders() {
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("Content-Type", "image/png");
+        headers.put("app-key", appKey);
+
+        if (LotusyToken.current()!=null) {
+            headers.put("Authorization", "Bearer "+LotusyToken.current().getAccessToken());
+        }
+
+        return headers;
+    }
+
     private static String appKey;
     private static ENVIRONMENT env;
 
