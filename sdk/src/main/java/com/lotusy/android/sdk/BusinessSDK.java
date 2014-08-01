@@ -99,13 +99,11 @@ public class BusinessSDK extends LotusySDK {
     }
 
 
-    public static void getUserRating(int businessId, LotusyRatingCallback callback) {
+    public static void getUserRating(int businessId, int userId, LotusyRatingCallback callback) {
         if (LotusyToken.current()==null) {
             callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
         }
-
-        int userId = LotusyToken.current().getUserId();
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/business/"+businessId+"/user/"+userId+"/rating");

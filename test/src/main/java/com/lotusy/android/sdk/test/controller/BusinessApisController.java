@@ -8,6 +8,7 @@ import com.lotusy.android.sdk.domain.LotusyAddress;
 import com.lotusy.android.sdk.domain.LotusyHours;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.LotusySimpleCallback;
+import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyBusinessCallback;
 import com.lotusy.android.sdk.domain.business.LotusyBusinessLocationListCallback;
@@ -164,7 +165,8 @@ public class BusinessApisController {
 
 
     public static void userBusinessRate(final Activity activity) {
-        BusinessSDK.getUserRating(businessId, new LotusyRatingCallback() {
+        int userId = LotusyToken.current().getUserId();
+        BusinessSDK.getUserRating(businessId, userId, new LotusyRatingCallback() {
             @Override
             public void callback(LotusyTaskResult result, LotusyRating rating) {
                 String msg = "result: " + result.isSuccess() + "\n\n";
