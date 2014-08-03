@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.lotusy.android.sdk.AccountSDK;
-import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUser;
@@ -122,10 +121,20 @@ public class AccountApisController {
 
 
     public static void updateProfile(final Activity activity) {
-        AccountSDK.updateProfile("updated name", "updated nick", "http://profile", "updated profile", new LotusySimpleCallback() {
+        AccountSDK.updateProfile("updated name", "updated nick", "http://profile", "updated profile", new LotusyUserCallback() {
             @Override
-            public void callback(LotusyTaskResult result) {
+            public void callback(LotusyTaskResult result, LotusyUser user) {
                 String msg = "result: "+result.isSuccess();
+                if (result.isSuccess()) {
+                    msg = msg+"user id: "+user.getId()+"\n\n";
+                    msg = msg+"description : "+user.getDescription()+"\n\n";
+                    msg = msg+"external reference: "+user.getExternalRef()+"\n\n";
+                    msg = msg+"external type: "+user.getExternalType()+"\n\n";
+                    msg = msg+"nick name: "+user.getNickName()+"\n\n";
+                    msg = msg+"picture: "+user.getPicture()+"\n\n";
+                    msg = msg+"user name: "+user.getUserName()+"\n\n";
+                    msg = msg+"last login: "+user.getLastLogin();
+                }
 
                 Intent intent = new Intent(activity, ResultActivity.class);
                 intent.putExtra("result", msg);

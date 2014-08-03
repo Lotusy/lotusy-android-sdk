@@ -62,7 +62,7 @@ abstract public class LotusyUserCallback extends LotusyCallback {
                 user.lastLogin = calendar.getTime();
             }
 
-            if (LotusyToken.current!=null && user.id==LotusyToken.current.userId) {
+            if (user.id==LotusyToken.current.userId) {
                 LotusyUser.current = user;
             }
 

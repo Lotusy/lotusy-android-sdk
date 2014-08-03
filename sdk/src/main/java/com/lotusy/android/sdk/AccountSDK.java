@@ -1,9 +1,9 @@
 package com.lotusy.android.sdk;
 
 import com.google.gson.JsonObject;
-import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
+import com.lotusy.android.sdk.domain.account.LotusyUser;
 import com.lotusy.android.sdk.domain.account.LotusyUserCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
 import com.lotusy.android.sdk.task.LotusyTaskParam;
@@ -85,16 +85,16 @@ public class AccountSDK extends LotusySDK {
                                       String nickName,
                                       String picture,
                                       String description,
-                                      LotusySimpleCallback callback) {
+                                      LotusyUserCallback callback) {
         if (LotusyToken.current()==null) {
-            callback.callback(LotusyTaskResult.getNoAuthResult());
+            callback.callback(LotusyTaskResult.getNoAuthResult(), null);
             return;
         }
 
         if (userName==null && nickName==null && picture==null && description==null) {
             LotusyTaskResult result = new LotusyTaskResult();
             result.setSuccess(true);
-            callback.callback(result);
+            callback.callback(result, LotusyUser.current());
         }
 
         JsonObject body = new JsonObject();
