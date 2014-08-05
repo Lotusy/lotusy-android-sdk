@@ -135,7 +135,7 @@ public class CommentSDK extends LotusySDK {
         }
 
         LotusyTaskParam param = new LotusyTaskParam();
-        param.setUri(getHost()+"/user/"+userId+"/collection?&start="+start+"&size="+size);
+        param.setUri(getHost()+"/user/"+userId+"/collection?start="+start+"&size="+size);
         param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
