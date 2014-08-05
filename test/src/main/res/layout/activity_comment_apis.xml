@@ -134,6 +134,30 @@
                 android:layout_below="@+id/comment_reply"
                 android:layout_centerHorizontal="true" />
 
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Add to User Collection"
+                android:id="@+id/add_to_collection"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onAddToCollection"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/comment_replies"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="User Collection Comments"
+                android:id="@+id/user_collection_comments"
+                android:background="#008080"
+                android:height="60dp"
+                android:onClick="onUserCollectionComments"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/add_to_collection"
+                android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
     </ScrollView>
 

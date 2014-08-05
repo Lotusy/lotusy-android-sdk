@@ -251,6 +251,44 @@ public class CommentApisController {
         });
     }
 
+    public static void addToCollection(final Activity activity) {
+        CommentSDK.addToUserCollection(commentId, new LotusySimpleCallback() {
+            @Override
+            public void callback(LotusyTaskResult result) {
+                String msg = "result: " + result.isSuccess();
+
+                Intent intent = new Intent(activity, ResultActivity.class);
+                intent.putExtra("result", msg);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+    public static void userCollectionComments(final Activity activity) {
+        CommentSDK.getUserCollection(AccountApisController.current(), 0, 10, new LotusyCommentListCallback() {
+            @Override
+            public void callback(LotusyTaskResult result, List<LotusyComment> comments) {
+                String msg = "result: " + result.isSuccess() + "\n";
+                if (result.isSuccess()) {
+                    for (LotusyComment comment : comments) {
+                        msg = msg + "\n============================= \n";
+                        msg = msg + "comment id: " + comment.getId() + "\n";
+                        msg = msg + "message: " + comment.getMessage() + "\n";
+                        msg = msg + "like count: " + comment.getLikeCount() + "\n";
+                        msg = msg + "dislike count: " + comment.getDislikeCount() + "\n";
+                        msg = msg + "reply count: " + comment.getReplyCount() + "\n";
+                        msg = msg + "is deleted: " + comment.isDeleted() + "\n";
+                        msg = msg + "create time: " + comment.getCreateTime() + "\n";
+                    }
+                }
+
+                Intent intent = new Intent(activity, ResultActivity.class);
+                intent.putExtra("result", msg);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
 
     public static int current() {
         return commentId;

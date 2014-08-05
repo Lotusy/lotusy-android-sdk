@@ -75,4 +75,8 @@ public class CommentApis extends Activity {
     public void onGetRepliesClick(View view) {
         CommentApisController.commentReplies(this);
     }
+
+    public void onAddToCollection(View view) { CommentApisController.addToCollection(this); }
+
+    public void onUserCollectionComments(View view) { CommentApisController.userCollectionComments(this); }
 }

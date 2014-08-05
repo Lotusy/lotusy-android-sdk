@@ -110,6 +110,39 @@ public class CommentSDK extends LotusySDK {
     }
 
 
+    public static void addToUserCollection(int commentId, LotusySimpleCallback callback) {
+        if (LotusyToken.current()==null) {
+            callback.callback(LotusyTaskResult.getNoAuthResult());
+            return;
+        }
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/collect/comment/"+commentId);
+        param.setMethod("POST");
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
+    public static void getUserCollection(int userId,
+                                         int start,
+                                         int size,
+                                         LotusyCommentListCallback callback) {
+        if (LotusyToken.current()==null) {
+            callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
+        }
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/user/"+userId+"/collection?&start="+start+"&size="+size);
+        param.setMethod("GET");
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
     public static void getCommentsNearLocation( LotusyLatLng latlng,
                                                 int radius,
                                                 boolean is_miles,
