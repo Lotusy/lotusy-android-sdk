@@ -16,6 +16,7 @@ public class LotusyUser {
     protected int id;
     protected String externalType;
     protected String externalRef;
+    protected String email;
     protected String userName;
     protected String nickName;
     protected String picture;
@@ -34,6 +35,10 @@ public class LotusyUser {
 
     public String getExternalRef() {
         return externalRef;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getUserName() {

@@ -31,6 +31,10 @@ abstract public class LotusyUserCallback extends LotusyCallback {
                 String externalType = response.get("external_type").getAsString();
                 user.externalType = externalType;
             }
+            if (response.get("email")!=null) {
+                String email = response.get("email").getAsString();
+                user.email = email;
+            }
             if (response.get("username")!=null) {
                 String userName = response.get("username").getAsString();
                 user.userName = userName;
