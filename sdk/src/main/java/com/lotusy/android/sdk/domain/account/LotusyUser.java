@@ -21,6 +21,7 @@ public class LotusyUser {
     protected String nickName;
     protected String picture;
     protected String description;
+    protected int followerCount;
     protected Date lastLogin;
     protected boolean superUser;
     protected boolean blocked;
@@ -55,6 +56,10 @@ public class LotusyUser {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getFollowerCount() {
+        return followerCount;
     }
 
     public Date getLastLogin() {

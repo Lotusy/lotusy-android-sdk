@@ -9,6 +9,7 @@ import com.lotusy.android.sdk.domain.LotusyHours;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
+import com.lotusy.android.sdk.domain.business.LotusySimpleBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyBusinessCallback;
 import com.lotusy.android.sdk.domain.business.LotusyBusinessLocationListCallback;
@@ -121,18 +122,18 @@ public class BusinessApisController {
 
         BusinessSDK.getBusinessesNearLocation(latLng, 10000, true, 0, 10, new LotusyBusinessLocationListCallback() {
             @Override
-            public void callback(LotusyTaskResult result, Map<Double, LotusyBusiness> businesses) {
+            public void callback(LotusyTaskResult result, Map<Double, LotusySimpleBusiness> businesses) {
                 String msg = "result: " + result.isSuccess() + "\n";
                 if (result.isSuccess()) {
                     for (Double distance : businesses.keySet()) {
-                        LotusyBusiness business = businesses.get(distance);
+                        LotusySimpleBusiness business = businesses.get(distance);
                         msg = msg + "\n===================== " + distance + "\n";
                         msg = msg + "business id: " + business.getId() + "\n";
                         msg = msg + "business en: " + business.getEnName() + "\n";
                         msg = msg + "business zh: " + business.getZhName() + "\n";
                         msg = msg + "business tw: " + business.getTwName() + "\n";
-                        msg = msg + "lat: " + business.getLatlng().getLat() + "\n";
-                        msg = msg + "lng: " + business.getLatlng().getLng() + "\n";
+                        msg = msg + "price: " + business.getPrice() + "\n";
+                        msg = msg + "cash only: " + business.isCashOnly() + "\n";
                     }
                 }
 

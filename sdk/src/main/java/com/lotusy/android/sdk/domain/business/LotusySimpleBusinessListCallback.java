@@ -7,22 +7,22 @@ import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 import com.lotusy.android.sdk.utility.LotusyUtility;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by pshen on 2014-07-17.
  */
-abstract public class LotusyBusinessLocationListCallback extends LotusyCallback {
+abstract public class LotusySimpleBusinessListCallback extends LotusyCallback {
 
     @Override
     protected void doCallback(LotusyCallbackStatus status, JsonObject response) {
         LotusyTaskResult result = null;
-        Map<Double, LotusySimpleBusiness> businesses = null;
+        ArrayList<LotusySimpleBusiness> businesses = null;
 
         if (status == LotusyCallbackStatus.SUCCESS) {
-            businesses = new HashMap<Double, LotusySimpleBusiness>();
+            businesses = new ArrayList<LotusySimpleBusiness>();
 
             JsonArray businessArr = response.get("businesses").getAsJsonArray();
 
@@ -34,9 +34,7 @@ abstract public class LotusyBusinessLocationListCallback extends LotusyCallback 
                 int businessId = element.get("id").getAsInt();
                 business.id = businessId;
 
-                double distance = element.get("distance").getAsDouble();
-
-                businesses.put(distance, business);
+                businesses.add(business);
             }
 
             result = new LotusyTaskResult();
@@ -63,5 +61,5 @@ abstract public class LotusyBusinessLocationListCallback extends LotusyCallback 
         this.callback(result, businesses);
     }
 
-    abstract public void callback(LotusyTaskResult result, Map<Double, LotusySimpleBusiness> businesses);
+    abstract public void callback(LotusyTaskResult result, List<LotusySimpleBusiness> business);
 }

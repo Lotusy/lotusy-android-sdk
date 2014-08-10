@@ -1,6 +1,8 @@
 package com.lotusy.android.sdk;
 
 import com.google.gson.JsonObject;
+import com.lotusy.android.sdk.domain.LotusySimpleCallback;
+import com.lotusy.android.sdk.domain.account.LotusySimpleUserListCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUser;
@@ -107,6 +109,39 @@ public class AccountSDK extends LotusySDK {
         param.setUri(getHost()+"/profile");
         param.setMethod("PUT");
         param.setBody(body.toString());
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
+    public static void followUser(int userId, LotusySimpleCallback callback) {
+        if (LotusyToken.current()==null) {
+            callback.callback(LotusyTaskResult.getNoAuthResult());
+            return;
+        }
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost() + "/follow/" + userId);
+        param.setMethod("POST");
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
+    public static void getUserFollowers( int userId,
+                                         int start,
+                                         int size,
+                                         LotusySimpleUserListCallback callback) {
+        if (LotusyToken.current()==null) {
+            callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
+        }
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/"+userId+"/followers?start="+start+"&size="+size);
+        param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();

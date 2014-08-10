@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusyAddress;
 import com.lotusy.android.sdk.domain.LotusyHours;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
+import com.lotusy.android.sdk.domain.business.LotusySimpleBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyRating;
 import com.lotusy.android.sdk.domain.comment.LotusyComment;
@@ -81,6 +82,46 @@ public class LotusyUtility {
         if (json.get("social")!=null && !json.get("social").isJsonNull()) {
             String social = json.get("social").getAsString();
             business.setSocial(social);
+        }
+        if (json.get("image")!=null && !json.get("image").isJsonNull()) {
+            String image = json.get("image").getAsString();
+            business.setImageUrl(image);
+        }
+
+
+        return business;
+    }
+
+    public static LotusySimpleBusiness parseSimpleBusinessJson(JsonObject json) {
+        LotusySimpleBusiness business = new LotusySimpleBusiness();
+
+        if (json.get("rating")!=null && !json.get("rating").isJsonNull()) {
+            LotusyRating rating = parseRatingJson(json.get("rating").getAsJsonObject());
+            business.setRating(rating);
+        }
+        if (json.get("comment_count")!=null && !json.get("comment_count").isJsonNull()) {
+            int commentCount = json.get("comment_count").getAsInt();
+            business.setCommentCount(commentCount);
+        }
+        if (json.get("name_zh")!=null && !json.get("name_zh").isJsonNull()) {
+            String nameZh = json.get("name_zh").getAsString();
+            business.setZhName(nameZh);
+        }
+        if (json.get("name_tw")!=null && !json.get("name_tw").isJsonNull()) {
+            String nameTw = json.get("name_tw").getAsString();
+            business.setTwName(nameTw);
+        }
+        if (json.get("name_en")!=null && !json.get("name_en").isJsonNull()) {
+            String nameEn = json.get("name_en").getAsString();
+            business.setEnName(nameEn);
+        }
+        if (json.get("price")!=null && !json.get("price").isJsonNull()) {
+            String price = json.get("price").getAsString();
+            business.setPrice(price);
+        }
+        if (json.get("cash_only")!=null && !json.get("cash_only").isJsonNull()) {
+            boolean cachOnly = json.get("cash_only").getAsString().equals("Y");
+            business.setCashOnly(cachOnly);
         }
 
 

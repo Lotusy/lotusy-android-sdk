@@ -59,6 +59,10 @@ abstract public class LotusyUserCallback extends LotusyCallback {
                 boolean blocked = response.get("blocked").getAsString().equals("Y");
                 user.blocked = blocked;
             }
+            if (response.get("follower_count")!=null) {
+                int followerCount = response.get("follower_count").getAsInt();
+                user.followerCount = followerCount;
+            }
             if (response.get("last_login")!=null) {
                 int lastLogin = (-1) * response.get("last_login").getAsInt();
                 Calendar calendar = Calendar.getInstance();
