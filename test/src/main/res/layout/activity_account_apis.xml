@@ -8,62 +8,104 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.lotusy.android.sdk.test.AccountApis">
 
-    <Button
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Register User"
-        android:id="@+id/register"
-        android:background="#ff008080"
-        android:height="60dp"
-        android:onClick="onRegisterClick"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="28dp" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Login User"
-        android:id="@+id/login"
-        android:background="#ff008080"
-        android:height="60dp"
-        android:onClick="onLoginClick"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/register"
-        android:layout_alignParentLeft="true" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Get Profile"
-        android:id="@+id/current"
-        android:background="#ff008080"
-        android:height="60dp"
-        android:onClick="onCurrentClick"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_centerHorizontal="true" >
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Get User Profile"
-        android:id="@+id/profile"
-        android:background="#ff008080"
-        android:height="60dp"
-        android:onClick="onGetProfileClick"
-        android:layout_below="@+id/current"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:minHeight="900dp">
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Update  User"
-        android:id="@+id/update"
-        android:background="#ff008080"
-        android:height="60dp"
-        android:onClick="onUpdateClick"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/profile"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Register User"
+                android:id="@+id/register"
+                android:background="#ff008080"
+                android:height="60dp"
+                android:layout_marginTop="20dp"
+                android:onClick="onRegisterClick"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Login User"
+                android:id="@+id/login"
+                android:background="#ff008080"
+                android:height="60dp"
+                android:onClick="onLoginClick"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/register"
+                android:layout_alignParentLeft="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Get Profile"
+                android:id="@+id/current"
+                android:background="#ff008080"
+                android:layout_marginTop="20dp"
+                android:height="60dp"
+                android:onClick="onCurrentClick"
+                android:layout_below="@+id/login"
+                android:layout_alignParentLeft="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Get User Profile"
+                android:id="@+id/profile"
+                android:background="#ff008080"
+                android:layout_marginTop="20dp"
+                android:height="60dp"
+                android:onClick="onGetProfileClick"
+                android:layout_below="@+id/current"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Update User"
+                android:id="@+id/update"
+                android:background="#ff008080"
+                android:height="60dp"
+                android:onClick="onUpdateClick"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/profile"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Follow User"
+                android:id="@+id/follow"
+                android:background="#ff008080"
+                android:height="60dp"
+                android:onClick="onFollowUser"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/update"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Get User Followers"
+                android:id="@+id/followers"
+                android:background="#ff008080"
+                android:height="60dp"
+                android:onClick="onUserFollowers"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/follow"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
 </RelativeLayout>

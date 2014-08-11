@@ -4,12 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.lotusy.android.sdk.AccountSDK;
+import com.lotusy.android.sdk.domain.LotusySimpleCallback;
+import com.lotusy.android.sdk.domain.account.LotusySimpleUser;
+import com.lotusy.android.sdk.domain.account.LotusySimpleUserListCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUser;
 import com.lotusy.android.sdk.domain.account.LotusyUserCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 import com.lotusy.android.sdk.test.ResultActivity;
+
+import java.util.List;
 
 /**
  * Created by indochino on 2014-07-25.
@@ -55,13 +60,13 @@ public class AccountApisController {
         AccountSDK.login(externalType, reference, new LotusyTokenCallback() {
             @Override
             public void callback(LotusyTaskResult result, LotusyToken token) {
-                String msg = "result: "+result.isSuccess()+"\n\n";
+                String msg = "result: " + result.isSuccess() + "\n\n";
                 if (result.isSuccess()) {
-                    msg = msg+"user id: "+token.getUserId()+"\n\n";
-                    msg = msg+"access token: "+token.getAccessToken()+"\n\n";
-                    msg = msg+"refresh token: "+token.getRefreshToken()+"\n\n";
-                    msg = msg+"token type: "+token.getTokenType()+"\n\n";
-                    msg = msg+"expires in: "+token.getExpiresAt();
+                    msg = msg + "user id: " + token.getUserId() + "\n\n";
+                    msg = msg + "access token: " + token.getAccessToken() + "\n\n";
+                    msg = msg + "refresh token: " + token.getRefreshToken() + "\n\n";
+                    msg = msg + "token type: " + token.getTokenType() + "\n\n";
+                    msg = msg + "expires in: " + token.getExpiresAt();
                 }
 
                 Intent intent = new Intent(activity, ResultActivity.class);
@@ -76,16 +81,16 @@ public class AccountApisController {
         AccountSDK.getProfile(new LotusyUserCallback() {
             @Override
             public void callback(LotusyTaskResult result, LotusyUser user) {
-                String msg = "result: "+result.isSuccess()+"\n\n";
+                String msg = "result: " + result.isSuccess() + "\n\n";
                 if (result.isSuccess()) {
-                    msg = msg+"user id: "+user.getId()+"\n\n";
-                    msg = msg+"description : "+user.getDescription()+"\n\n";
-                    msg = msg+"external reference: "+user.getExternalRef()+"\n\n";
-                    msg = msg+"external type: "+user.getExternalType()+"\n\n";
-                    msg = msg+"nick name: "+user.getNickName()+"\n\n";
-                    msg = msg+"picture: "+user.getPicture()+"\n\n";
-                    msg = msg+"user name: "+user.getUserName()+"\n\n";
-                    msg = msg+"last login: "+user.getLastLogin();
+                    msg = msg + "user id: " + user.getId() + "\n\n";
+                    msg = msg + "description : " + user.getDescription() + "\n\n";
+                    msg = msg + "external reference: " + user.getExternalRef() + "\n\n";
+                    msg = msg + "external type: " + user.getExternalType() + "\n\n";
+                    msg = msg + "nick name: " + user.getNickName() + "\n\n";
+                    msg = msg + "picture: " + user.getPicture() + "\n\n";
+                    msg = msg + "user name: " + user.getUserName() + "\n\n";
+                    msg = msg + "last login: " + user.getLastLogin();
                 }
 
                 Intent intent = new Intent(activity, ResultActivity.class);
@@ -100,16 +105,16 @@ public class AccountApisController {
         AccountSDK.getUserProfile(userId, new LotusyUserCallback() {
             @Override
             public void callback(LotusyTaskResult result, LotusyUser user) {
-                String msg = "result: "+result.isSuccess()+"\n\n";
+                String msg = "result: " + result.isSuccess() + "\n\n";
                 if (result.isSuccess()) {
-                    msg = msg+"user id: "+user.getId()+"\n\n";
-                    msg = msg+"description : "+user.getDescription()+"\n\n";
-                    msg = msg+"external reference: "+user.getExternalRef()+"\n\n";
-                    msg = msg+"external type: "+user.getExternalType()+"\n\n";
-                    msg = msg+"nick name: "+user.getNickName()+"\n\n";
-                    msg = msg+"picture: "+user.getPicture()+"\n\n";
-                    msg = msg+"user name: "+user.getUserName()+"\n\n";
-                    msg = msg+"last login: "+user.getLastLogin();
+                    msg = msg + "user id: " + user.getId() + "\n\n";
+                    msg = msg + "description : " + user.getDescription() + "\n\n";
+                    msg = msg + "external reference: " + user.getExternalRef() + "\n\n";
+                    msg = msg + "external type: " + user.getExternalType() + "\n\n";
+                    msg = msg + "nick name: " + user.getNickName() + "\n\n";
+                    msg = msg + "picture: " + user.getPicture() + "\n\n";
+                    msg = msg + "user name: " + user.getUserName() + "\n\n";
+                    msg = msg + "last login: " + user.getLastLogin();
                 }
 
                 Intent intent = new Intent(activity, ResultActivity.class);
@@ -124,16 +129,52 @@ public class AccountApisController {
         AccountSDK.updateProfile("updated name", "updated nick", "http://profile", "updated profile", new LotusyUserCallback() {
             @Override
             public void callback(LotusyTaskResult result, LotusyUser user) {
-                String msg = "result: "+result.isSuccess();
+                String msg = "result: " + result.isSuccess();
                 if (result.isSuccess()) {
-                    msg = msg+"user id: "+user.getId()+"\n\n";
-                    msg = msg+"description : "+user.getDescription()+"\n\n";
-                    msg = msg+"external reference: "+user.getExternalRef()+"\n\n";
-                    msg = msg+"external type: "+user.getExternalType()+"\n\n";
-                    msg = msg+"nick name: "+user.getNickName()+"\n\n";
-                    msg = msg+"picture: "+user.getPicture()+"\n\n";
-                    msg = msg+"user name: "+user.getUserName()+"\n\n";
-                    msg = msg+"last login: "+user.getLastLogin();
+                    msg = msg + "user id: " + user.getId() + "\n\n";
+                    msg = msg + "description : " + user.getDescription() + "\n\n";
+                    msg = msg + "external reference: " + user.getExternalRef() + "\n\n";
+                    msg = msg + "external type: " + user.getExternalType() + "\n\n";
+                    msg = msg + "nick name: " + user.getNickName() + "\n\n";
+                    msg = msg + "picture: " + user.getPicture() + "\n\n";
+                    msg = msg + "user name: " + user.getUserName() + "\n\n";
+                    msg = msg + "last login: " + user.getLastLogin();
+                }
+
+                Intent intent = new Intent(activity, ResultActivity.class);
+                intent.putExtra("result", msg);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+
+    public static void followUser(final Activity activity) {
+        AccountSDK.followUser(1, new LotusySimpleCallback() {
+            @Override
+            public void callback(LotusyTaskResult result) {
+                String msg = "result: " + result.isSuccess();
+
+                Intent intent = new Intent(activity, ResultActivity.class);
+                intent.putExtra("result", msg);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+
+    public static void getUserFollowers(final Activity activity) {
+        AccountSDK.getUserFollowers(1, 0, 20, new LotusySimpleUserListCallback() {
+            @Override
+            public void callback(LotusyTaskResult result, List<LotusySimpleUser> users) {
+                String msg = "result: " + result.isSuccess() + "\n";
+                if (result.isSuccess()) {
+                    for (LotusySimpleUser user : users) {
+                        msg = msg + "\n============================= \n";
+                        msg = msg + "user id: " + user.getId() + "\n";
+                        msg = msg + "nick name: " + user.getNickName() + "\n";
+                        msg = msg + "picture: " + user.getPicture() + "\n";
+                    }
                 }
 
                 Intent intent = new Intent(activity, ResultActivity.class);

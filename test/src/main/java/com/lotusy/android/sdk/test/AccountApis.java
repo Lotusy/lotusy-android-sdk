@@ -64,4 +64,16 @@ public class AccountApis extends Activity {
             AccountApisController.updateProfile(this);
         }
     }
+
+    public void onFollowUser(View v){
+        if(v.getId() == R.id.follow){
+            AccountApisController.followUser(this);
+        }
+    }
+
+    public void onUserFollowers(View v){
+        if(v.getId() == R.id.followers){
+            AccountApisController.getUserFollowers(this);
+        }
+    }
 }
