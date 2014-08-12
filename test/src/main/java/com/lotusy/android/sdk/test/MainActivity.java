@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LotusySDK.setup("9D0E7CE8711F6F1CF87704557828A16E", LotusySDK.ENVIRONMENT.PROD);
+        LotusySDK.setup("9D0E7CE8711F6F1CF87704557828A16E", LotusySDK.ENVIRONMENT.INT);
 
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
