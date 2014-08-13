@@ -104,6 +104,18 @@
                 android:layout_below="@+id/follow"
                 android:layout_centerHorizontal="true" />
 
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Access Token Login"
+                android:id="@+id/token_login"
+                android:background="#ff008080"
+                android:height="60dp"
+                android:onClick="onTokenLogin"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/followers"
+                android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
 
     </ScrollView>

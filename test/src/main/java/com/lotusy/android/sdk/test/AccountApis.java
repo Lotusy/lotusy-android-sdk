@@ -76,4 +76,10 @@ public class AccountApis extends Activity {
             AccountApisController.getUserFollowers(this);
         }
     }
+
+    public void onTokenLogin(View v){
+        if(v.getId() == R.id.token_login){
+            AccountApisController.tokenLogin(this);
+        }
+    }
 }

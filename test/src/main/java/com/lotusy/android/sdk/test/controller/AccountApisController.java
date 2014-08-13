@@ -8,6 +8,7 @@ import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusySimpleUser;
 import com.lotusy.android.sdk.domain.account.LotusySimpleUserListCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
+import com.lotusy.android.sdk.domain.account.LotusyTokenAuthCallback;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUser;
 import com.lotusy.android.sdk.domain.account.LotusyUserCallback;
@@ -175,6 +176,26 @@ public class AccountApisController {
                         msg = msg + "nick name: " + user.getNickName() + "\n";
                         msg = msg + "picture: " + user.getPicture() + "\n";
                     }
+                }
+
+                Intent intent = new Intent(activity, ResultActivity.class);
+                intent.putExtra("result", msg);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+    public static void tokenLogin(final Activity activity) {
+        AccountSDK.tokenLogin(LotusyToken.current().getAccessToken(), new LotusyTokenAuthCallback() {
+            @Override
+            public void callback(LotusyTaskResult result) {
+                String msg = "result: "+result.isSuccess()+"\n\n";
+                if (result.isSuccess()) {
+                    msg = msg+"user id: "+LotusyToken.current().getUserId()+"\n\n";
+                    msg = msg+"access token: "+LotusyToken.current().getAccessToken()+"\n\n";
+                    msg = msg+"refresh token: "+LotusyToken.current().getRefreshToken()+"\n\n";
+                    msg = msg+"token type: "+LotusyToken.current().getTokenType()+"\n\n";
+                    msg = msg+"expires in: "+LotusyToken.current().getExpiresAt();
                 }
 
                 Intent intent = new Intent(activity, ResultActivity.class);

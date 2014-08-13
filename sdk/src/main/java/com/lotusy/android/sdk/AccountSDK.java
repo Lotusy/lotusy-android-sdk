@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusySimpleUserListCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
+import com.lotusy.android.sdk.domain.account.LotusyTokenAuthCallback;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUser;
 import com.lotusy.android.sdk.domain.account.LotusyUserCallback;
@@ -46,6 +47,17 @@ public class AccountSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/auth/" + externalType + "/" + externalRef);
+        param.setMethod("GET");
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
+    public static void tokenLogin( String accessToken,
+                                   LotusyTokenAuthCallback callback ) {
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/tokeninfo?access_token=" + accessToken);
         param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
