@@ -47,13 +47,25 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:text="Authenticate User"
+                android:id="@+id/authenticate"
+                android:background="#ff008080"
+                android:height="60dp"
+                android:onClick="onAuthenticaClick"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/login"
+                android:layout_alignParentLeft="true" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="Get Profile"
                 android:id="@+id/current"
                 android:background="#ff008080"
                 android:layout_marginTop="20dp"
                 android:height="60dp"
                 android:onClick="onCurrentClick"
-                android:layout_below="@+id/login"
+                android:layout_below="@+id/authenticate"
                 android:layout_alignParentLeft="true" />
 
             <Button

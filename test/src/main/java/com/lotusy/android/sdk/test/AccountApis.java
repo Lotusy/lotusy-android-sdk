@@ -47,6 +47,12 @@ public class AccountApis extends Activity {
         }
     }
 
+    public void onAuthenticaClick(View v){
+        if(v.getId() == R.id.authenticate){
+            AccountApisController.authenticateUser(this);
+        }
+    }
+
     public void onCurrentClick(View v){
         if(v.getId() == R.id.current){
             AccountApisController.getCurrentProfile(this);

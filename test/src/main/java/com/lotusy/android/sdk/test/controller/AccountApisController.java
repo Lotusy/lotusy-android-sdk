@@ -78,6 +78,29 @@ public class AccountApisController {
     }
 
 
+    public static void authenticateUser(final Activity activity) {
+        String externalType = "facebook";
+        String accessToken = "CAAFCWZAsUp80BAOEaIhadCHwzInJ3660xZA6ELJbVzoIxKUXJdDl71EtSHXZCdwYknhBeb4Ip7xEfpo0qPZAEXYeZAiW7KZAvcdgkiThFEJ1mbom6OaJkztGZCcq3HmgOb691dTSZAgASNZAw08FMZB92kp6qpSJqjZCy3G1XZAZAupRYPG9z7JliorZAIa4sb7LPbtrQ3rfgYm4rgXsjY9hYdoslFH6SLYdocBCCvMaQ6NUnMxAZDZD";
+        AccountSDK.authenticate(externalType, accessToken, new LotusyTokenCallback() {
+            @Override
+            public void callback(LotusyTaskResult result, LotusyToken token) {
+                String msg = "result: " + result.isSuccess() + "\n\n";
+                if (result.isSuccess()) {
+                    msg = msg + "user id: " + token.getUserId() + "\n\n";
+                    msg = msg + "access token: " + token.getAccessToken() + "\n\n";
+                    msg = msg + "refresh token: " + token.getRefreshToken() + "\n\n";
+                    msg = msg + "token type: " + token.getTokenType() + "\n\n";
+                    msg = msg + "expires in: " + token.getExpiresAt();
+                }
+
+                Intent intent = new Intent(activity, ResultActivity.class);
+                intent.putExtra("result", msg);
+                activity.startActivity(intent);
+            }
+        });
+    }
+
+
     public static void getCurrentProfile(final Activity activity) {
         AccountSDK.getProfile(new LotusyUserCallback() {
             @Override
