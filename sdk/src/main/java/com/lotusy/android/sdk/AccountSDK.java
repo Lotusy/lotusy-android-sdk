@@ -54,6 +54,21 @@ public class AccountSDK extends LotusySDK {
     }
 
 
+    public static void authenticate( String externalType,
+                                     String accessToken,
+                                     LotusyTokenCallback callback ) {
+        JsonObject body = new JsonObject();
+        body.addProperty("access_token", accessToken);
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/token/auth/" + externalType);
+        param.setMethod("POST");
+        param.setBody(body.toString());
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
     public static void tokenLogin( String accessToken,
                                    LotusyTokenAuthCallback callback ) {
         LotusyTaskParam param = new LotusyTaskParam();
