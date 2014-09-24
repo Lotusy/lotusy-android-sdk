@@ -143,11 +143,11 @@ public class BusinessSDK extends LotusySDK {
 
     public static void getBusinessDishes( int businessId,
                                           int start,
-                                          int end,
+                                          int size,
                                           LotusyDishListCallback callback) {
 
         LotusyTaskParam param = new LotusyTaskParam();
-        param.setUri(getHost()+"/"+businessId+"/dishes?start="+start+"&end="+end);
+        param.setUri(getHost()+"/"+businessId+"/dishes?start="+start+"&size="+size);
         param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
