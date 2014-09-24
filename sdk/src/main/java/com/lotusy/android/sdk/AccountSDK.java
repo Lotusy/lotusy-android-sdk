@@ -8,6 +8,7 @@ import com.lotusy.android.sdk.domain.account.LotusyTokenAuthCallback;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUser;
 import com.lotusy.android.sdk.domain.account.LotusyUserCallback;
+import com.lotusy.android.sdk.domain.business.LotusyDishListCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
 import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
@@ -168,6 +169,39 @@ public class AccountSDK extends LotusySDK {
 
         LotusyTaskParam param = new LotusyTaskParam();
         param.setUri(getHost()+"/"+userId+"/followers?start="+start+"&size="+size);
+        param.setMethod("GET");
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
+    public static void collectDish(int dishId, LotusySimpleCallback callback) {
+        if (LotusyToken.current()==null) {
+            callback.callback(LotusyTaskResult.getNoAuthResult());
+            return;
+        }
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost() + "/dish/" + dishId + "/collect");
+        param.setMethod("POST");
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
+    public static void getUserDishCollection( int userId,
+                                              int start,
+                                              int size,
+                                              LotusyDishListCallback callback ) {
+        if (LotusyToken.current()==null) {
+            callback.callback(LotusyTaskResult.getNoAuthResult(), null);
+            return;
+        }
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/"+userId+"/dishes?start="+start+"&size="+size);
         param.setMethod("GET");
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
