@@ -9,6 +9,7 @@ import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.business.LotusySimpleBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyRating;
+import com.lotusy.android.sdk.domain.business.LotusyDish;
 import com.lotusy.android.sdk.domain.comment.LotusyComment;
 import com.lotusy.android.sdk.domain.comment.LotusyReply;
 
@@ -298,6 +299,41 @@ public class LotusyUtility {
         }
 
         return hours;
+    }
+
+    public static LotusyDish parseDishJson(JsonObject json) {
+        LotusyDish dish = new LotusyDish();
+
+        if (json.get("business_id")!=null && !json.get("business_id").isJsonNull()) {
+            int businessId = json.get("business_id").getAsInt();
+            dish.setBusinessId(businessId);
+        }
+        if (json.get("user_id")!=null && !json.get("user_id").isJsonNull()) {
+            int userId = json.get("user_id").getAsInt();
+            dish.setCreatorId(userId);
+        }
+        if (json.get("name_zh")!=null && !json.get("name_zh").isJsonNull()) {
+            String nameZh = json.get("name_zh").getAsString();
+            dish.setZhName(nameZh);
+        }
+        if (json.get("name_tw")!=null && !json.get("name_tw").isJsonNull()) {
+            String nameTw = json.get("name_tw").getAsString();
+            dish.setTwName(nameTw);
+        }
+        if (json.get("name_en")!=null && !json.get("name_en").isJsonNull()) {
+            String nameEn = json.get("name_en").getAsString();
+            dish.setEnName(nameEn);
+        }
+        if (json.get("image")!=null && !json.get("image").isJsonNull()) {
+            String nameEn = json.get("image").getAsString();
+            dish.setEnName(nameEn);
+        }
+        if (json.get("verified")!=null && !json.get("verified").isJsonNull()) {
+            boolean verified = json.get("verified").getAsBoolean();
+            dish.setVerified(verified);
+        }
+
+        return dish;
     }
 
     public static List<String> parseImageLinks(JsonArray array) {

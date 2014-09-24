@@ -9,6 +9,7 @@ import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.business.LotusyBusiness;
 import com.lotusy.android.sdk.domain.business.LotusyBusinessCallback;
 import com.lotusy.android.sdk.domain.business.LotusyBusinessLocationListCallback;
+import com.lotusy.android.sdk.domain.business.LotusyDishListCallback;
 import com.lotusy.android.sdk.domain.business.LotusyRating;
 import com.lotusy.android.sdk.domain.business.LotusyRatingCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
@@ -111,7 +112,46 @@ public class BusinessSDK extends LotusySDK {
 
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
+    }
 
+
+    public static void createDish( int businessId,
+                                   String enName,
+                                   String zhName,
+                                   String twName,
+                                   LotusySimpleCallback callback) {
+
+        if (LotusyToken.current()==null) {
+            callback.callback(null);
+            return;
+        }
+
+        JsonObject body = new JsonObject();
+        if (enName!=null) { body.addProperty("name_en", enName); }
+        if (zhName!=null) { body.addProperty("name_zh", zhName); }
+        if (twName!=null) { body.addProperty("name_tw", twName); }
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/"+businessId+"/dish");
+        param.setMethod("POST");
+        param.setBody(body.toString());
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
+    }
+
+
+    public static void getBusinessDishes( int businessId,
+                                          int start,
+                                          int end,
+                                          LotusyDishListCallback callback) {
+
+        LotusyTaskParam param = new LotusyTaskParam();
+        param.setUri(getHost()+"/"+businessId+"/dishes?start="+start+"&end="+end);
+        param.setMethod("GET");
+
+        Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
+        task.start();
     }
 
 
