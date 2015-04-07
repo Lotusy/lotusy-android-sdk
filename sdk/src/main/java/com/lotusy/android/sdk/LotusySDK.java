@@ -16,6 +16,7 @@ abstract public class LotusySDK {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json");
         headers.put("app-key", appKey);
+        headers.put("Language", lang);
 
         if (LotusyToken.current()!=null) {
             headers.put("Authorization", "Bearer "+LotusyToken.current().getAccessToken());
@@ -28,6 +29,7 @@ abstract public class LotusySDK {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "image/png");
         headers.put("app-key", appKey);
+        headers.put("Language", lang);
 
         if (LotusyToken.current()!=null) {
             headers.put("Authorization", "Bearer "+LotusyToken.current().getAccessToken());
@@ -38,13 +40,42 @@ abstract public class LotusySDK {
 
     private static String appKey;
     private static ENVIRONMENT env;
+    private static String lang;
 
-    public static void setup(String applicationKey, ENVIRONMENT environment) {
+    public static void setup(String applicationKey, ENVIRONMENT environment, String language) {
         appKey = applicationKey;
         env = environment;
+        lang = language;
     }
 
     protected static ENVIRONMENT env() {
         return env;
+    }
+
+    protected static String language() { return lang; }
+
+    protected static String getHost() {
+
+        String host = "";
+
+        switch (env()) {
+            case DEV:
+                host = "http://local.api.foodster.club/rest";
+                break;
+            case TEST:
+                host = "http://test.api.foodster.club/rest";
+                break;
+            case INT:
+                host = "http://int.api.foodster.club/rest";
+                break;
+            case STAG:
+                host = "http://staging.api.foodstser.club/rest";
+                break;
+            case PROD:
+                host = "https://api.foodster.club/rest";
+                break;
+        }
+
+        return host;
     }
 }

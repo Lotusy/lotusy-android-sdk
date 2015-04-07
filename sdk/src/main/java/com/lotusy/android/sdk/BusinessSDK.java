@@ -216,33 +216,4 @@ public class BusinessSDK extends LotusySDK {
 
         return body;
     }
-
-
-// ==========================================================================================================
-
-
-    private static String getHost() {
-
-        String host = "";
-
-        switch (env()) {
-            case DEV:
-                host = "http://local.business.lotusy.com/rest";
-                break;
-            case TEST:
-                host = "http://test.business.lotusy.com/rest";
-                break;
-            case INT:
-                host = "http://int.business.lotusy.com/rest";
-                break;
-            case STAG:
-                host = "http://staging.business.lotusy.com/rest";
-                break;
-            case PROD:
-                host = "http://business.lotusy.com/rest";
-                break;
-        }
-
-        return host;
-    }
 }

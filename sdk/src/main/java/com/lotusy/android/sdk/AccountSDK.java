@@ -207,33 +207,4 @@ public class AccountSDK extends LotusySDK {
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
     }
-
-
-// ==========================================================================================================
-
-
-    private static String getHost() {
-
-        String host = "";
-
-        switch (env()) {
-            case DEV:
-                host = "http://local.account.lotusy.com/rest";
-                break;
-            case TEST:
-                host = "http://test.account.lotusy.com/rest";
-                break;
-            case INT:
-                host = "http://int.account.lotusy.com/rest";
-                break;
-            case STAG:
-                host = "http://staging.account.lotusy.com/rest";
-                break;
-            case PROD:
-                host = "http://account.lotusy.com/rest";
-                break;
-        }
-
-        return host;
-    }
 }

@@ -152,33 +152,4 @@ public class ImageSDK extends LotusySDK {
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
     }
-
-
-// ==========================================================================================================
-
-
-    private static String getHost() {
-
-        String host = "";
-
-        switch (env()) {
-            case DEV:
-                host = "http://local.image.lotusy.com/rest";
-                break;
-            case TEST:
-                host = "http://test.image.lotusy.com/rest";
-                break;
-            case INT:
-                host = "http://int.image.lotusy.com/rest";
-                break;
-            case STAG:
-                host = "http://staging.image.lotusy.com/rest";
-                break;
-            case PROD:
-                host = "http://image.lotusy.com/rest";
-                break;
-        }
-
-        return host;
-    }
 }

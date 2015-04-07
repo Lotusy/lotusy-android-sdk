@@ -251,33 +251,4 @@ public class CommentSDK extends LotusySDK {
         Thread task = new Thread(new LotusyRestTransactionTask(param, callback));
         task.start();
     }
-
-
-// ==========================================================================================================
-
-
-    private static String getHost() {
-
-        String host = "";
-
-        switch (env()) {
-            case DEV:
-                host = "http://local.comment.lotusy.com/rest";
-                break;
-            case TEST:
-                host = "http://test.comment.lotusy.com/rest";
-                break;
-            case INT:
-                host = "http://int.comment.lotusy.com/rest";
-                break;
-            case STAG:
-                host = "http://staging.comment.lotusy.com/rest";
-                break;
-            case PROD:
-                host = "http://comment.lotusy.com/rest";
-                break;
-        }
-
-        return host;
-    }
 }
