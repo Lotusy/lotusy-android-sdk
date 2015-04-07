@@ -5,30 +5,18 @@ import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 
 /**
- * Created by pshen on 2015-04-06.
+ * Created by Indochino on 2015-04-07.
  */
-abstract public class PageBuddiesDishActivitiesCallback extends LotusyCallback {
+abstract public class PageBuddyActivitiesCallback extends LotusyCallback {
 
     @Override
     protected void doCallback(LotusyCallbackStatus status, JsonObject response) {
         LotusyTaskResult result = null;
-        JsonObject activities = null;
 
         if (status == LotusyCallbackStatus.SUCCESS) {
-            try {
-                activities = response.get("activities").getAsJsonObject();
-
-                result = new LotusyTaskResult();
-                result.setStatusCode(0);
-                result.setSuccess(true);
-            } catch (Exception e) {
-                result = new LotusyTaskResult();
-                result.setStatusCode(2);
-                result.setSuccess(false);
-
-                String description = e.getMessage();
-                result.addError(description);
-            }
+            result = new LotusyTaskResult();
+            result.setStatusCode(0);
+            result.setSuccess(true);
         }
         else if (status == LotusyCallbackStatus.ERROR) {
             result = new LotusyTaskResult();
@@ -47,7 +35,7 @@ abstract public class PageBuddiesDishActivitiesCallback extends LotusyCallback {
             result.addError(description);
         }
 
-        this.callback(result, activities);
+        this.callback(result, response);
     }
 
     abstract public void callback(LotusyTaskResult result, JsonObject activities);
