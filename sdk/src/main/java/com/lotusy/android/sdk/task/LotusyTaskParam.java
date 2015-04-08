@@ -17,7 +17,13 @@ public class LotusyTaskParam {
     private InputStream file;
 
     public LotusyTaskParam() {
-        this.headers =  LotusySDK.getDefaultHeaders();
+        this.headers = LotusySDK.getDefaultHeaders();
+    }
+
+    public LotusyTaskParam(String uri, String method) {
+        this.headers = LotusySDK.getDefaultHeaders();
+        this.uri = uri;
+        this.method = method;
     }
 
     public String getUri() {
