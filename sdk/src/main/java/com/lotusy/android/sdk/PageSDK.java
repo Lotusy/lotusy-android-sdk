@@ -67,7 +67,7 @@ public class PageSDK extends LotusySDK {
         task.start();
     }
 
-    public static void UC004_getBuddiesActivities(PageBuddyDishActivitiesCallback callback) {
+    public static void UC004_getBuddiesActivities(PageBuddyActivitiesCallback callback) {
         int userId = LotusyToken.current().getUserId();
         String uri = getHost()+"/flow/user/"+userId+"/activities";
 

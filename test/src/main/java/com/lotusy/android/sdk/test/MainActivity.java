@@ -16,6 +16,7 @@ import com.lotusy.android.sdk.LotusySDK;
 import com.lotusy.android.sdk.PageSDK;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
+import com.lotusy.android.sdk.domain.page.PageBuddyActivitiesCallback;
 import com.lotusy.android.sdk.domain.page.PageBuddyDishActivitiesCallback;
 import com.lotusy.android.sdk.domain.page.PageBusinessDishesCallback;
 import com.lotusy.android.sdk.domain.page.PageDishDetailsCallback;
@@ -87,21 +88,18 @@ public class MainActivity extends Activity {
                         int a = 1;
                     }
                 });
-*/
-                PageSDK.UC004_getBuddiesActivities(new PageBuddyDishActivitiesCallback() {
+                PageSDK.UC004_getBuddiesActivities(new PageBuddyActivitiesCallback() {
                     @Override
                     public void callback(LotusyTaskResult result, JsonObject activities) {
                         int a = 1;
                     }
                 });
-/*
                 PageSDK.UC004_getMyBuddies(new PageMyBuddiesCallback() {
                     @Override
                     public void callback(LotusyTaskResult result, JsonObject activities) {
                         int a = 1;
                     }
                 });
-*/
                 PageSDK.UC004_getMyProfile(new PageMyProfileDetailCallback() {
                     @Override
                     public void callback(LotusyTaskResult result, JsonObject profile) {
@@ -114,7 +112,6 @@ public class MainActivity extends Activity {
                         int a = 1;
                     }
                 });
-/*
                 PageSDK.UC004_getSuggestBuddies(new PageMySuggestBuddiesCallback() {
                     @Override
                     public void callback(LotusyTaskResult result, JsonObject buddies) {
@@ -127,22 +124,22 @@ public class MainActivity extends Activity {
                         int a = 1;
                     }
                 });
-*/
                 PageSDK.UC005_getUserProfileRanking(1, new PageUserProfileRankingCallback() {
                     @Override
                     public void callback(LotusyTaskResult result, JsonObject ranking) {
                         int a = 1;
                     }
                 });
-                PageSDK.UC006_getProfileSettingAlerts(new PageMyProfileSettingAlertsCallback() {
-                    @Override
-                    public void callback(LotusyTaskResult result, JsonArray alerts) {
-                        int a = 1;
-                    }
-                });
                 PageSDK.UC006_getProfileSettings(new PageMyProfileSettingsCallback() {
                     @Override
                     public void callback(LotusyTaskResult result, JsonObject settings) {
+                        int a = 1;
+                    }
+                });
+*/
+                PageSDK.UC006_getProfileSettingAlerts(new PageMyProfileSettingAlertsCallback() {
+                    @Override
+                    public void callback(LotusyTaskResult result, JsonArray alerts) {
                         int a = 1;
                     }
                 });
