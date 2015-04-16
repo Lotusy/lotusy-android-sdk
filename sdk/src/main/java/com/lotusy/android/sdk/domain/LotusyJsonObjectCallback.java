@@ -1,35 +1,30 @@
-package com.lotusy.android.sdk.domain.page;
+package com.lotusy.android.sdk.domain;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.task.LotusyCallback;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
 
 /**
- * Created by pshen on 2015-04-06.
+ * Created by Indochino on 2015-04-15.
  */
-abstract public class PageBusinessDishesCallback extends LotusyCallback {
+abstract public class LotusyJsonObjectCallback extends LotusyCallback {
 
     @Override
     protected void doCallback(LotusyCallbackStatus status, JsonObject response) {
         LotusyTaskResult result = null;
-        JsonArray dishes = null;
+        JsonObject object = null;
 
         if (status == LotusyCallbackStatus.SUCCESS) {
-            try {
-                dishes = response.get("dishes").getAsJsonArray();
-
-                result = new LotusyTaskResult();
-                result.setStatusCode(0);
-                result.setSuccess(true);
-            } catch (Exception e) {
-                result = new LotusyTaskResult();
-                result.setStatusCode(2);
-                result.setSuccess(false);
-
-                String description = e.getMessage();
-                result.addError(description);
+            String key = this.getObjectResponseKey();
+            if (key!=null && key!="") {
+                object = response.getAsJsonObject(key);
+            } else {
+                object = response;
             }
+
+            result = new LotusyTaskResult();
+            result.setStatusCode(0);
+            result.setSuccess(true);
         }
         else if (status == LotusyCallbackStatus.ERROR) {
             result = new LotusyTaskResult();
@@ -48,8 +43,10 @@ abstract public class PageBusinessDishesCallback extends LotusyCallback {
             result.addError(description);
         }
 
-        this.callback(result, dishes);
+        this.callback(result, object);
     }
 
-    abstract public void callback(LotusyTaskResult result, JsonArray dishes);
+    abstract public void callback(LotusyTaskResult result, JsonObject object);
+
+    abstract public String getObjectResponseKey();
 }

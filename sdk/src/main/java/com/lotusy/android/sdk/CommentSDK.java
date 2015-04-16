@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
 import com.lotusy.android.sdk.domain.LotusySimpleCallback;
 import com.lotusy.android.sdk.domain.account.LotusyToken;
-import com.lotusy.android.sdk.domain.account.LotusyUser;
 import com.lotusy.android.sdk.domain.comment.LotusyCommentCallback;
 import com.lotusy.android.sdk.domain.comment.LotusyCommentCreateCallback;
 import com.lotusy.android.sdk.domain.comment.LotusyCommentListCallback;
