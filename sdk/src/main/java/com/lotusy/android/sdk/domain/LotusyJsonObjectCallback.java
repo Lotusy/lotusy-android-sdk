@@ -48,5 +48,5 @@ abstract public class LotusyJsonObjectCallback extends LotusyCallback {
 
     abstract public void callback(LotusyTaskResult result, JsonObject object);
 
-    abstract public String getObjectResponseKey();
+    abstract protected String getObjectResponseKey();
 }
