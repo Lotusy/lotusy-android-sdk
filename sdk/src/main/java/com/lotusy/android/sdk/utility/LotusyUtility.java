@@ -6,10 +6,6 @@ import com.google.gson.JsonObject;
 import com.lotusy.android.sdk.domain.LotusyAddress;
 import com.lotusy.android.sdk.domain.LotusyHours;
 import com.lotusy.android.sdk.domain.LotusyLatLng;
-import com.lotusy.android.sdk.domain.business.LotusySimpleBusiness;
-import com.lotusy.android.sdk.domain.business.LotusyBusiness;
-import com.lotusy.android.sdk.domain.business.LotusyRating;
-import com.lotusy.android.sdk.domain.business.LotusyDish;
 import com.lotusy.android.sdk.domain.comment.LotusyComment;
 import com.lotusy.android.sdk.domain.comment.LotusyReply;
 
@@ -23,140 +19,6 @@ import java.util.List;
  */
 public class LotusyUtility {
 
-    public static LotusyBusiness parseBusinessJson(JsonObject json) {
-        LotusyBusiness business = new LotusyBusiness();
-
-        LotusyLatLng latlng = parseLatlngJson(json);
-        business.setLatlng(latlng);
-
-        LotusyAddress address = parseAddressJson(json);
-        business.setAddress(address);
-
-        if (json.get("hours")!=null && !json.get("hours").isJsonNull()) {
-            LotusyHours hours = parseHoursJson(json.get("hours").getAsJsonObject());
-            business.setHours(hours);
-        }
-        if (json.get("rating")!=null && !json.get("rating").isJsonNull()) {
-            LotusyRating rating = parseRatingJson(json.get("rating").getAsJsonObject());
-            business.setRating(rating);
-        }
-        if (json.get("comment_count")!=null && !json.get("comment_count").isJsonNull()) {
-            int commentCount = json.get("comment_count").getAsInt();
-            business.setCommentCount(commentCount);
-        }
-        if (json.get("rating_count")!=null && !json.get("rating_count").isJsonNull()) {
-            int ratingCount = json.get("rating_count").getAsInt();
-            business.setRatingCount(ratingCount);
-        }
-        if (json.get("name_zh")!=null && !json.get("name_zh").isJsonNull()) {
-            String nameZh = json.get("name_zh").getAsString();
-            business.setZhName(nameZh);
-        }
-        if (json.get("name_tw")!=null && !json.get("name_tw").isJsonNull()) {
-            String nameTw = json.get("name_tw").getAsString();
-            business.setTwName(nameTw);
-        }
-        if (json.get("name_en")!=null && !json.get("name_en").isJsonNull()) {
-            String nameEn = json.get("name_en").getAsString();
-            business.setEnName(nameEn);
-        }
-        if (json.get("price")!=null && !json.get("price").isJsonNull()) {
-            String price = json.get("price").getAsString();
-            business.setPrice(price);
-        }
-        if (json.get("cash_only")!=null && !json.get("cash_only").isJsonNull()) {
-            boolean cachOnly = json.get("cash_only").getAsString().equals("Y");
-            business.setCashOnly(cachOnly);
-        }
-        if (json.get("verified")!=null && !json.get("verified").isJsonNull()) {
-            boolean verified = json.get("verified").getAsString().equals("Y");
-            business.setVerified(verified);
-        }
-        if (json.get("tel")!=null && !json.get("tel").isJsonNull()) {
-            String phone = json.get("tel").getAsString();
-            business.setPhone(phone);
-        }
-        if (json.get("website")!=null && !json.get("website").isJsonNull()) {
-            String website = json.get("website").getAsString();
-            business.setWebsite(website);
-        }
-        if (json.get("social")!=null && !json.get("social").isJsonNull()) {
-            String social = json.get("social").getAsString();
-            business.setSocial(social);
-        }
-        if (json.get("image")!=null && !json.get("image").isJsonNull()) {
-            String image = json.get("image").getAsString();
-            business.setImageUrl(image);
-        }
-
-
-        return business;
-    }
-
-    public static LotusySimpleBusiness parseSimpleBusinessJson(JsonObject json) {
-        LotusySimpleBusiness business = new LotusySimpleBusiness();
-
-        if (json.get("rating")!=null && !json.get("rating").isJsonNull()) {
-            LotusyRating rating = parseRatingJson(json.get("rating").getAsJsonObject());
-            business.setRating(rating);
-        }
-        if (json.get("comment_count")!=null && !json.get("comment_count").isJsonNull()) {
-            int commentCount = json.get("comment_count").getAsInt();
-            business.setCommentCount(commentCount);
-        }
-        if (json.get("name_zh")!=null && !json.get("name_zh").isJsonNull()) {
-            String nameZh = json.get("name_zh").getAsString();
-            business.setZhName(nameZh);
-        }
-        if (json.get("name_tw")!=null && !json.get("name_tw").isJsonNull()) {
-            String nameTw = json.get("name_tw").getAsString();
-            business.setTwName(nameTw);
-        }
-        if (json.get("name_en")!=null && !json.get("name_en").isJsonNull()) {
-            String nameEn = json.get("name_en").getAsString();
-            business.setEnName(nameEn);
-        }
-        if (json.get("price")!=null && !json.get("price").isJsonNull()) {
-            String price = json.get("price").getAsString();
-            business.setPrice(price);
-        }
-        if (json.get("cash_only")!=null && !json.get("cash_only").isJsonNull()) {
-            boolean cachOnly = json.get("cash_only").getAsString().equals("Y");
-            business.setCashOnly(cachOnly);
-        }
-
-
-        return business;
-    }
-
-    public static LotusyRating parseRatingJson(JsonObject json) {
-        LotusyRating rating = new LotusyRating();
-
-        if (json.get("overall")!=null && !json.get("overall").isJsonNull()) {
-            double overall = json.get("overall").getAsDouble();
-            rating.setOverall(overall);
-        }
-        if (json.get("food")!=null && !json.get("food").isJsonNull()) {
-            double food = json.get("food").getAsDouble();
-            rating.setFood(food);
-        }
-        if (json.get("serv")!=null && !json.get("serv").isJsonNull()) {
-            double service = json.get("serv").getAsDouble();
-            rating.setService(service);
-        }
-        if (json.get("env")!=null && !json.get("env").isJsonNull()) {
-            double environment = json.get("env").getAsDouble();
-            rating.setEnvironment(environment);
-        }
-        if (json.get("create_time")!=null && !json.get("create_time").isJsonNull()) {
-            int createTime = (-1) * json.get("create_time").getAsInt();
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.SECOND, createTime);
-            rating.setCreateTime(calendar.getTime());
-        }
-
-        return rating;
-    }
 
     public static LotusyComment parseCommentJson(JsonObject json) {
         LotusyComment comment = new LotusyComment();
@@ -301,40 +163,6 @@ public class LotusyUtility {
         return hours;
     }
 
-    public static LotusyDish parseDishJson(JsonObject json) {
-        LotusyDish dish = new LotusyDish();
-
-        if (json.get("business_id")!=null && !json.get("business_id").isJsonNull()) {
-            int businessId = json.get("business_id").getAsInt();
-            dish.setBusinessId(businessId);
-        }
-        if (json.get("user_id")!=null && !json.get("user_id").isJsonNull()) {
-            int userId = json.get("user_id").getAsInt();
-            dish.setCreatorId(userId);
-        }
-        if (json.get("name_zh")!=null && !json.get("name_zh").isJsonNull()) {
-            String nameZh = json.get("name_zh").getAsString();
-            dish.setZhName(nameZh);
-        }
-        if (json.get("name_tw")!=null && !json.get("name_tw").isJsonNull()) {
-            String nameTw = json.get("name_tw").getAsString();
-            dish.setTwName(nameTw);
-        }
-        if (json.get("name_en")!=null && !json.get("name_en").isJsonNull()) {
-            String nameEn = json.get("name_en").getAsString();
-            dish.setEnName(nameEn);
-        }
-        if (json.get("image")!=null && !json.get("image").isJsonNull()) {
-            String nameEn = json.get("image").getAsString();
-            dish.setEnName(nameEn);
-        }
-        if (json.get("verified")!=null && !json.get("verified").isJsonNull()) {
-            boolean verified = json.get("verified").getAsBoolean();
-            dish.setVerified(verified);
-        }
-
-        return dish;
-    }
 
     public static List<String> parseImageLinks(JsonArray array) {
         ArrayList<String> images = new ArrayList<String>();

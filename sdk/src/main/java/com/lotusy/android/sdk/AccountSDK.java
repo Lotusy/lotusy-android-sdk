@@ -7,7 +7,6 @@ import com.lotusy.android.sdk.domain.account.LotusyToken;
 import com.lotusy.android.sdk.domain.account.LotusyTokenCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUserFollowersCallback;
 import com.lotusy.android.sdk.domain.account.LotusyUserFollowingsCallback;
-import com.lotusy.android.sdk.domain.business.LotusyDishListCallback;
 import com.lotusy.android.sdk.task.LotusyRestTransactionTask;
 import com.lotusy.android.sdk.task.LotusyTaskParam;
 import com.lotusy.android.sdk.task.LotusyTaskResult;
